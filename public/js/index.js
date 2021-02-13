@@ -5,6 +5,7 @@ $(document).ready(function () {
     event.preventDefault();
     gameName = $("#game-name-input").val().trim();
     getGameId(gameName);
+    gameName.val("");
   });
 
   // FIRST 3RD PARTY API CALL TO RETRIEVE ID \\
@@ -22,14 +23,18 @@ $(document).ready(function () {
       $.ajax({
         url: retrieveGameInfo,
         method: "GET",
-      }).then(function (response) {
-        // CREATE OUR RESPONSE OBJECT \\
-        const newGame = {
-          numberOfPlayers: 6,
-          gameCategory: fun,
-        };
-        sendNewGameDb(newGame);
-      });
+      })
+        .then(function (response) {
+          // CREATE OUR RESPONSE OBJECT \\
+          const newGame = {
+            numberOfPlayers: 6,
+            gameCategory: fun,
+          };
+          sendNewGameDb(newGame);
+        })
+        .catch(function (err) {
+          console.log(err);
+        });
     });
   };
 
@@ -37,9 +42,13 @@ $(document).ready(function () {
     $.ajax("/api/game", {
       method: "POST",
       data: newGame,
-    }).then(function () {
-      console.log("created new game");
-      location.reload();
-    });
+    })
+      .then(function () {
+        console.log("created new game");
+        location.reload();
+      })
+      .catch(function (err) {
+        console.log(err);
+      });
   };
 });
