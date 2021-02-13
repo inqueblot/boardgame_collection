@@ -11,7 +11,7 @@ $(document).ready(function () {
   const getGameId = (gameName) => {
     // ADD URL BELOW \\
     const retrieveIdURL = `url ${gameName} here`;
-    $.ajax9({
+    $.ajax({
       url: retrieveIdURL,
       method: "GET",
     }).then(function (response) {
