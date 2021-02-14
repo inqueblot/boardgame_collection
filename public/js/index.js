@@ -1,4 +1,5 @@
 "strict";
+
 $(document).ready(function () {
   // SEARCH GAME NAME INPUT AND SUBMIT BUTTON \\
   $("#search").on("click", function (event) {
