@@ -5,19 +5,33 @@ $(document).ready(function () {
   $("#search").on("click", function (event) {
     event.preventDefault();
     gameName = $("#game-name-input").val().trim();
-    getGameId(gameName);
-    gameName.val("");
+    getGames(gameName);
+    $("#game-name-input").val("");
   });
 
   // FIRST 3RD PARTY API CALL TO RETRIEVE ID \\
-  const getGameId = (gameName) => {
+  const getGames = (gameName) => {
+    numberOfGameResponse = 5;
     // ADD URL BELOW \\
-    const gameSearch = `https://www.boardgameatlas.com/api/search?name=${gameName}&pretty=true&client_id=JLBr5npPhV`;
+    const gameSearch = `https://api.boardgameatlas.com/api/search?name=${gameName}&pretty=true&limit=${numberOfGameResponse}&client_id=JLBr5npPhV`;
     $.ajax({
       url: gameSearch,
       method: "GET",
     }).then(function (response) {
-      console.log(response);
+      responseList(response);
     });
+  };
+  const responseList = (response) => {
+    for (let i = 0; i < response.games.length; i++) {
+      console.log(response.games[i].name);
+      console.log(response.games[i].min_players);
+      console.log(response.games[i].max_players);
+      console.log(response.games[i].max_playtime);
+      console.log(response.games[i].min_age);
+      console.log(response.games[i].publisher);
+      console.log(response.games[i].year_published);
+      console.log(response.games[i].msrp);
+      console.log(response.games[i].images.small);
+    }
   };
 });
