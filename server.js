@@ -1,5 +1,5 @@
 var express = require("express");
-var db = require("./models");
+var { sequelize } = require("./models");
 
 // Sets up the Express App
 // =============================================================
@@ -22,8 +22,12 @@ app.get("/", (req, res)=>{
 
 // Starting our Express app
 // =============================================================
-db.sequelize.sync({ force: true }).then(function () {
+
+
+sequelize.sync().then(function () {
     app.listen(PORT, function () {
         console.log("Server listening on http://localhost:" + PORT);
     });
 })
+//insert into sync() to clear DB
+// { force: true }
