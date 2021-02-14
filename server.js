@@ -19,9 +19,10 @@ app.set('view engine', 'handlebars');
 // Routes
 // =============================================================
 require("./routes/api-routes.js")(app);
-app.get("/", (req, res) => {
-    res.render("index")
-})
+require("./routes/html-routes.js")(app);
+// app.get("/", (req, res) => {
+//     res.render("index")
+// })
 
 // Starting our Express app
 // =============================================================
