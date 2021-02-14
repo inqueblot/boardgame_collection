@@ -4,10 +4,6 @@ module.exports = function (sequelize, DataTypes) {
         bg_id: {
             type: DataTypes.INTEGER,
         },
-        avg: DataTypes.DECIMAL,
-        weighted_avg: DataTypes.DECIMAL,
-        weight: DataTypes.DECIMAL,
-        rank: DataTypes.INTEGER,
         minPlayers: DataTypes.INTEGER,
         maxPlayers: DataTypes.INTEGER,
         playTime: DataTypes.INTEGER,
