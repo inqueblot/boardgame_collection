@@ -16,6 +16,9 @@ app.use(express.static("public"));
 // Routes
 // =============================================================
 require("./routes/api-routes.js")(app);
+app.get("/", (req, res)=>{
+    res.render("index")
+})
 
 // Starting our Express app
 // =============================================================
@@ -23,7 +26,7 @@ require("./routes/api-routes.js")(app);
 
 sequelize.sync().then(function () {
     app.listen(PORT, function () {
-        console.log("App listening on PORT " + PORT);
+        console.log("Server listening on http://localhost:" + PORT);
     });
 })
 //insert into sync() to clear DB
