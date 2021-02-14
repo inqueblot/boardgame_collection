@@ -11,44 +11,12 @@ $(document).ready(function () {
   // FIRST 3RD PARTY API CALL TO RETRIEVE ID \\
   const getGameId = (gameName) => {
     // ADD URL BELOW \\
-    const retrieveIdURL = `url ${gameName} here`;
+    const gameSearch = `https://www.boardgameatlas.com/api/search?name=${gameName}&pretty=true&client_id=JLBr5npPhV`;
     $.ajax({
-      url: retrieveIdURL,
+      url: gameSearch,
       method: "GET",
     }).then(function (response) {
-      const id = response.id;
-      // ADD URL BELOW \\
-      const retrieveGameInfo = `url ${id} here`;
-      // SECOND 3RD PARTY API CALL WITH ID TO RETRIEVE GAME INFO \\
-      $.ajax({
-        url: retrieveGameInfo,
-        method: "GET",
-      })
-        .then(function (response) {
-          // CREATE OUR RESPONSE OBJECT \\
-          const newGame = {
-            numberOfPlayers: 6,
-            gameCategory: fun,
-          };
-          sendNewGameDb(newGame);
-        })
-        .catch(function (err) {
-          console.log(err);
-        });
+      console.log(response);
     });
-  };
-
-  const sendNewGameDb = (newGame) => {
-    $.ajax("/api/game", {
-      method: "POST",
-      data: newGame,
-    })
-      .then(function () {
-        console.log("created new game");
-        location.reload();
-      })
-      .catch(function (err) {
-        console.log(err);
-      });
   };
 });
