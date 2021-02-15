@@ -6,12 +6,13 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
-    "watch": "nodemon sever.js"
+    "watch": "nodemon server.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "express-handlebars": "^5.2.0",
     "jquery": "^3.5.1",
