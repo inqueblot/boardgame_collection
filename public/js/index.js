@@ -19,12 +19,19 @@ $(document).ready(function () {
     }).then(function (response) {
       response.games.forEach(element => {
         console.log(element);
-        let html = `<p><img src=${element.images.small}>`;
-        html += `<br>${element.name}`;
+        let html = `<p id=${element.id}><img src=${element.images.small}>`;
+        html += `${element.name}`;
         html += `</p>`;
         $("#searchResults").append(html);
+
+        $(`#${element.id}`).on("click", function (event) {
+          event.preventDefault();
+          console.log(this.id);
+        });
+
         //create event listener for image
         //maybe add button to add to collection
+        //maybe build in pagination
       });
 
     });
