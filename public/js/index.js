@@ -143,10 +143,12 @@ $(document).ready(function () {
     console.log(searchArr);
     const result = searchArr.filter(({ id }) => gameId.includes(id));
     console.log(result);
+    const [resultOb] = result;
+    console.log(resultOb);
     // Send the POST request.
     $.ajax("/api/game", {
       type: "POST",
-      data: result[0],
+      data: resultOb,
     }).then(function () {
       console.log("created new game");
       // Reload the page to get the updated list
