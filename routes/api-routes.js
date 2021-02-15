@@ -1,4 +1,5 @@
 var { Collection } = require("../models");
+const util = require("util");
 // Routes
 // =============================================================
 module.exports = function (app) {
@@ -11,29 +12,19 @@ module.exports = function (app) {
             res.json(results);
         });
     });
-
-    app.post("/api/save", function (req, res) {
-
-    })
-
-
-    // app.get("/api/:id", function (req, res {
-    //     // ajax call
-    //     // turn response into a page
-    //     // name picture stats a save to collection button 
-    // }))
     // // POST route for saving a new todo. We can create todo with the data in req.body
-    // app.post("/api/todos", function (req, res) {
-    //     // Write code here to create a new todo and save it to the database
-    //     // and then res.json back the new todo to the user
-    //     db.Todo.create(
-    //         req.body
+    app.post("/api/game", function (req, res) {
+        console.log(console.log(util.inspect(req.body, false, null)));
+        //     // Write code here to create a new todo and save it to the database
+        //     // and then res.json back the new todo to the user
+        //     db.Todo.create(
+        //         req.body
 
-    //     ).then(function (results) {
-    //         // `results` here would be the newly created chirp
-    //         res.end();
-    //     });
-    // });
+        //     ).then(function (results) {
+        //         // `results` here would be the newly created chirp
+        //         res.end();
+        //     });
+    });
     // // DELETE route for deleting todos. We can get the id of the todo to be deleted from
     // // req.params.id
     // app.delete("/api/todos/:id", function (req, res) {
