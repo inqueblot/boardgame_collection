@@ -4,6 +4,10 @@ $(document).ready(function () {
   // SEARCH GAME NAME INPUT AND SUBMIT BUTTON \\
   $("#search").on("click", function (event) {
     event.preventDefault();
+
+    // CLEAR SEARCH ARRAY FOR NEW SEARCH \\
+    searchArr = [];
+
     gameName = $("#game-name-input").val().trim();
     getGames(gameName);
     $("#game-name-input").val("");
@@ -29,9 +33,13 @@ $(document).ready(function () {
     });
   };
 
+  // ARRAY OF SEARCH RESULT OBJECTS \\
+  let searchArr = [];
+
   // LOOP THROUGH RESPONSE AND CREATE EACH VARIABLE \\
   const responseList = (response) => {
     for (let i = 0; i < response.games.length; i++) {
+      // console.log(response);
       const {
         name,
         min_players,
@@ -41,8 +49,10 @@ $(document).ready(function () {
         publisher,
         year_published: year,
         msrp,
+        id,
         images: { small },
       } = response.games[i];
+
       console.log(
         name,
         min_players,
@@ -52,7 +62,8 @@ $(document).ready(function () {
         publisher,
         year,
         msrp,
-        small
+        small,
+        id
       );
 
       // BUILD SEARCH RESPONSE TABLES FOR SEARCHED GAMES \\
@@ -101,8 +112,45 @@ $(document).ready(function () {
       lineBrk = "<br>";
       beginTable.append(lineBrk);
       saveBtn = $("<button>Save</button>");
-      saveBtn.attr("data-number", [i]);
+      saveBtn.attr("data-number", id);
+      saveBtn.addClass("save-btn");
       beginTable.append(saveBtn);
+      const gameObject = {
+        id: id,
+        name: name,
+        min_players: min_players,
+        max_players: max_players,
+        max_playtime: playTime,
+        age: age,
+        publisher: publisher,
+        year: year,
+        msrp: msrp,
+        images: { small },
+      };
+      // PUSH GAMEOBJECT TO EMPTY ARRAY AFTER EACH SEARCH \\
+      searchArr.push(gameObject);
+      console.log(searchArr);
     }
   };
+
+  // ADDING LISTENER ON CLICK SEND SELECTION TO AJAX \\
+  $(document).on("click", ".save-btn", newAjaxCall);
+
+  // AJAX CALL TO BACK END WITH FILTERED GAME OBJECT \\
+  function newAjaxCall() {
+    let gameId = $(this).attr("data-number");
+    console.log(gameId);
+    console.log(searchArr);
+    const result = searchArr.filter(({ id }) => gameId.includes(id));
+    console.log(result);
+    // Send the POST request.
+    $.ajax("/api/game", {
+      type: "POST",
+      data: result,
+    }).then(function () {
+      console.log("created new game");
+      // Reload the page to get the updated list
+      location.reload();
+    });
+  }
 });
