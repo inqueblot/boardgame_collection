@@ -6,4 +6,8 @@ module.exports = function (app, express) {
     app.get("/", (req, res) => {
         res.render("index")
     })
-}
+
+    app.get("/game/:id", (req, res) => {
+        res.render("game")
+    })
+} 
