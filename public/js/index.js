@@ -11,9 +11,12 @@ $(document).ready(function () {
 
   // FIRST 3RD PARTY API CALL TO RETRIEVE ID \\
   const getGames = (gameName) => {
-    numberOfGameResponse = 5;
+    const numberOfGameResponse = 5;
+    const id1 = "8HkZo9bYEU";
+    const id2 = "4Y7cLbbIhg";
+
     // ADD URL BELOW \\
-    const gameSearch = `https://api.boardgameatlas.com/api/search?name=${gameName}&pretty=true&limit=${numberOfGameResponse}&client_id=JLBr5npPhV`;
+    const gameSearch = `https://api.boardgameatlas.com/api/search?name=${gameName}&pretty=true&limit=${numberOfGameResponse}&client_id=${id1}`;
     $.ajax({
       url: gameSearch,
       method: "GET",
@@ -23,6 +26,8 @@ $(document).ready(function () {
   };
   const responseList = (response) => {
     for (let i = 0; i < response.games.length; i++) {
+      gameMSRP = response.games[i].msrp || "NA";
+      gamePublisher = response.games[i].publisher || "NA";
       console.log(response.games[i].name);
       console.log(response.games[i].min_players);
       console.log(response.games[i].max_players);
@@ -32,6 +37,8 @@ $(document).ready(function () {
       console.log(response.games[i].year_published);
       console.log(response.games[i].msrp);
       console.log(response.games[i].images.small);
+      console.log(gameMSRP);
+      console.log(gamePublisher);
     }
   };
 });
