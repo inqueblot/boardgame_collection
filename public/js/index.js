@@ -146,7 +146,7 @@ $(document).ready(function () {
     // Send the POST request.
     $.ajax("/api/game", {
       type: "POST",
-      data: result,
+      data: result[0],
     }).then(function () {
       console.log("created new game");
       // Reload the page to get the updated list
