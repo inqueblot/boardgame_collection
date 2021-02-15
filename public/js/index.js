@@ -26,7 +26,7 @@ $(document).ready(function () {
 
         $(`#${element.id}`).on("click", function (event) {
           event.preventDefault();
-          console.log(this.id);
+          console.log(this.id)
         });
 
         //create event listener for image
