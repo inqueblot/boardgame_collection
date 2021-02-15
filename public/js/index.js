@@ -39,7 +39,6 @@ $(document).ready(function () {
   // LOOP THROUGH RESPONSE AND CREATE EACH VARIABLE \\
   const responseList = (response) => {
     for (let i = 0; i < response.games.length; i++) {
-      // console.log(response);
       const {
         name,
         min_players,
@@ -53,18 +52,18 @@ $(document).ready(function () {
         images: { small },
       } = response.games[i];
 
-      console.log(
-        name,
-        min_players,
-        max_players,
-        playTime,
-        age,
-        publisher,
-        year,
-        msrp,
-        small,
-        id
-      );
+      // console.log(
+      //   name,
+      //   min_players,
+      //   max_players,
+      //   playTime,
+      //   age,
+      //   publisher,
+      //   year,
+      //   msrp,
+      //   small,
+      //   id
+      // );
 
       // BUILD SEARCH RESPONSE TABLES FOR SEARCHED GAMES \\
       const beginTable = $("#game-search-result");
@@ -116,20 +115,20 @@ $(document).ready(function () {
       saveBtn.addClass("save-btn");
       beginTable.append(saveBtn);
       const gameObject = {
-        id: id,
-        name: name,
-        min_players: min_players,
-        max_players: max_players,
-        max_playtime: playTime,
-        age: age,
-        publisher: publisher,
-        year: year,
-        msrp: msrp,
+        id,
+        name,
+        min_players,
+        max_players,
+        playTime,
+        age,
+        publisher,
+        year,
+        msrp,
         images: { small },
       };
       // PUSH GAMEOBJECT TO EMPTY ARRAY AFTER EACH SEARCH \\
       searchArr.push(gameObject);
-      console.log(searchArr);
+      // console.log(searchArr);
     }
   };
 
@@ -139,17 +138,17 @@ $(document).ready(function () {
   // AJAX CALL TO BACK END WITH FILTERED GAME OBJECT \\
   function newAjaxCall() {
     let gameId = $(this).attr("data-number");
-    console.log(gameId);
-    console.log(searchArr);
+    // console.log(gameId);
+    // console.log(searchArr);
     const result = searchArr.filter(({ id }) => gameId.includes(id));
-    console.log(result);
+    // console.log(result);
     const [resultOb] = result;
     console.log(resultOb);
     // Send the POST request.
     $.ajax("/api/game", {
       type: "POST",
       data: resultOb,
-    }).then(function () {
+    }).then(function (err) {
       console.log("created new game");
       // Reload the page to get the updated list
       location.reload();
