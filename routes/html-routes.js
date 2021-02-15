@@ -1,9 +1,7 @@
-var express = require("express");
-var exphbs = require('express-handlebars');
-var app = express();
+var path = require("path");
 
-module.exports = function (app, express) {
-    app.get("/", (req, res) => {
-        res.render("index")
+module.exports = function (app) {
+    app.get("/", function (req, res) {
+        res.render()
     })
 }
