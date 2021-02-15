@@ -30,6 +30,12 @@ $(document).ready(function () {
       method: "GET",
     }).then(function (response) {
       responseList(response);
+      $(".nextView").click(function (event) {
+        event.preventDefault();
+        // let callId = $(this).attr("value")
+        window.location.href = '/game/' + $(this).attr("value")
+
+      });
     });
   };
 
@@ -107,7 +113,7 @@ $(document).ready(function () {
       row7data.text(`Cost = $${msrp}`);
       beginTable.append(newRow7);
       newRow7.append(row7data);
-      beginTable.append(`<img src='${small}' />`);
+      beginTable.append(`<img class="nextView" value=${id} src='${small}' />`);
       lineBrk = "<br>";
       beginTable.append(lineBrk);
       saveBtn = $("<button>Save</button>");
@@ -154,4 +160,26 @@ $(document).ready(function () {
       location.reload();
     });
   }
+
+
+
+  // AJAX CALL TO BACK END WITH FILTERED GAME OBJECT \\
+  // function newAjaxCall() {
+  //   let gameId = $(this).attr("data-number");
+  //   console.log(gameId);
+  //   console.log(searchArr);
+  //   const result = searchArr.filter(({ id }) => gameId.includes(id));
+  //   console.log(result);
+  //   // Send the POST request.
+  //   $.ajax("/api/game", {
+  //     type: "POST",
+  //     data: result[0],
+  //   }).then(function () {
+  //     console.log("created new game");
+  //     // Reload the page to get the updated list
+  //     location.reload();
+  //   });
+  // }
 });
+
+
