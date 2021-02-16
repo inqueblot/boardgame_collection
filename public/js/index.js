@@ -29,11 +29,11 @@ $(document).ready(function () {
       url: gameSearch,
       method: "GET",
     }).then(function (response) {
-      responseList(response);
+      clearTable(response);
+      // responseList(response);
       $(".nextView").click(function (event) {
         event.preventDefault();
-        window.location.href = '/game/' + $(this).attr("value")
-
+        window.location.href = "/game/" + $(this).attr("value");
       });
     });
   };
@@ -41,16 +41,23 @@ $(document).ready(function () {
   // ARRAY OF SEARCH RESULT OBJECTS \\
   let searchArr = [];
 
+  // CLEAR PREVIOUS SEARCH RESULT TABLES \\
+  const clearTable = (response) => {
+    response.games.length >= 1
+      ? $(".search-table").detach() & responseList(response)
+      : console.log("no result");
+  };
+
   // LOOP THROUGH RESPONSE AND CREATE EACH VARIABLE \\
   const responseList = (response) => {
     for (let i = 0; i < response.games.length; i++) {
-      // console.log(response);
       const {
         name,
         min_players,
         max_players,
         max_playtime: playTime,
         min_age: age,
+        primary_designer: { name: designer },
         publisher,
         year_published: year,
         msrp,
@@ -58,21 +65,9 @@ $(document).ready(function () {
         images: { small },
       } = response.games[i];
 
-      console.log(
-        name,
-        min_players,
-        max_players,
-        playTime,
-        age,
-        publisher,
-        year,
-        msrp,
-        small,
-        id
-      );
-
       // BUILD SEARCH RESPONSE TABLES FOR SEARCHED GAMES \\
-      const beginTable = $("#game-search-result");
+      const beginTable = $('<table class="search-table" >');
+      $("#game-search-result").append(beginTable);
       let newHeaderRow = $("<tr>");
       let headerData = $("<th>");
       headerData.text(name);
@@ -120,21 +115,23 @@ $(document).ready(function () {
       saveBtn.attr("data-number", id);
       saveBtn.addClass("save-btn");
       beginTable.append(saveBtn);
+      beginTable.append("</table>");
       const gameObject = {
-        id: id,
-        name: name,
-        min_players: min_players,
-        max_players: max_players,
-        max_playtime: playTime,
-        age: age,
-        publisher: publisher,
-        year: year,
-        msrp: msrp,
+        id,
+        name,
+        min_players,
+        max_players,
+        playTime,
+        age,
+        publisher,
+        designer,
+        year,
+        msrp,
         images: { small },
       };
       // PUSH GAMEOBJECT TO EMPTY ARRAY AFTER EACH SEARCH \\
       searchArr.push(gameObject);
-      console.log(searchArr);
+      // console.log(searchArr);
     }
   };
 
@@ -144,40 +141,20 @@ $(document).ready(function () {
   // AJAX CALL TO BACK END WITH FILTERED GAME OBJECT \\
   function newAjaxCall() {
     let gameId = $(this).attr("data-number");
-    console.log(gameId);
-    console.log(searchArr);
+    // console.log(gameId);
+    // console.log(searchArr);
     const result = searchArr.filter(({ id }) => gameId.includes(id));
-    console.log(result);
+    // console.log(result);
+    const [resultOb] = result;
+    console.log(resultOb);
     // Send the POST request.
     $.ajax("/api/game", {
       type: "POST",
-      data: result[0],
-    }).then(function () {
+      data: resultOb,
+    }).then(function (err) {
       console.log("created new game");
       // Reload the page to get the updated list
-      location.reload();
+      // location.reload();
     });
   }
-
-
-
-  // AJAX CALL TO BACK END WITH FILTERED GAME OBJECT \\
-  // function newAjaxCall() {
-  //   let gameId = $(this).attr("data-number");
-  //   console.log(gameId);
-  //   console.log(searchArr);
-  //   const result = searchArr.filter(({ id }) => gameId.includes(id));
-  //   console.log(result);
-  //   // Send the POST request.
-  //   $.ajax("/api/game", {
-  //     type: "POST",
-  //     data: result[0],
-  //   }).then(function () {
-  //     console.log("created new game");
-  //     // Reload the page to get the updated list
-  //     location.reload();
-  //   });
-  // }
 });
-
-
