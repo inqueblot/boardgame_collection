@@ -5,6 +5,8 @@ $(document).ready(function () {
   $("#search").on("click", function (event) {
     event.preventDefault();
 
+    var suggestions = $("#suggestions")
+    suggestions.addClass("hide");
     // CLEAR SEARCH ARRAY FOR NEW SEARCH \\
     searchArr = [];
 
