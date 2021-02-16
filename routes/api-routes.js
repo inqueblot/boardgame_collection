@@ -14,9 +14,18 @@ module.exports = function (app) {
     });
     // // POST route for saving a new todo. We can create todo with the data in req.body
     app.post("/api/game/", function (req, res) {
-        console.log(console.log(util.inspect(req.body, false, null)));
+        let values = req.body
         Collection.create({
-
+            name: values.name,
+            bg_id: values.id,
+            minPlayers: values.min_players,
+            maxPlayers: values.max_players,
+            playTime: values.max_playtime,
+            yearPub: values.year,
+            publisher: values.publisher,
+            age: values.age,
+            msrp: values.msrp,
+            image: values.images.small
         })
         //     // Write code here to create a new todo and save it to the database
         //     // and then res.json back the new todo to the user
