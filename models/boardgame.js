@@ -11,7 +11,8 @@ module.exports = function (sequelize, DataTypes) {
         publisher: DataTypes.STRING,
         age: DataTypes.INTEGER,
         msrp: DataTypes.DECIMAL,
-        image: DataTypes.STRING
+        image: DataTypes.STRING,
+        designer: DataTypes.STRING
     });
     return Collection;
 }
