@@ -10,3 +10,17 @@ h1, h2 {
 .hide {
     display: none;
 }
+
+.nextView:hover {
+  cursor: pointer;
+  position: relative;
+  /* top: -25px;
+  left: -35px; */
+  width: 175px;
+  height: auto;
+  display: block;
+  z-index: 999;
+}
+.save-btn {
+  cursor: pointer;
+}

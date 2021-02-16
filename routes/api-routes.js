@@ -11,10 +11,11 @@ module.exports = function (app) {
             // results are available to us inside the .then
             res.json(results);
         });
-    });
+    })
     // // POST route for saving a new todo. We can create todo with the data in req.body
     app.post("/api/game/", function (req, res) {
         let values = req.body
+        console.group(req.body)
         Collection.create({
             name: values.name,
             bg_id: values.id,
@@ -25,7 +26,8 @@ module.exports = function (app) {
             publisher: values.publisher,
             age: values.age,
             msrp: values.msrp,
-            image: values.images.small
+            image: values.images.small,
+            designer: values.designer
         })
         //     // Write code here to create a new todo and save it to the database
         //     // and then res.json back the new todo to the user
@@ -37,6 +39,22 @@ module.exports = function (app) {
         //         res.end();
         //     });
     });
+    //     // Write code here to create a new todo and save it to the database
+    //     // and then res.json back the new todo to the user
+    //     db.Todo.create(
+    //         req.body
+
+    //     ).then(function (results) {
+    //         // `results` here would be the newly created chirp
+    // res.end();
+    //     });
+
+    // .then(function () {
+    //   console.log("new game added");
+    // });
+    // .catch(function (err) {
+    //   console.log(err);
+    // });
     // // DELETE route for deleting todos. We can get the id of the todo to be deleted from
     // // req.params.id
     // app.delete("/api/todos/:id", function (req, res) {
@@ -54,5 +72,5 @@ module.exports = function (app) {
     //     ).then(function (result) {
     //         res.json(result)
     //     })
-    // });
+    //   });
 };
