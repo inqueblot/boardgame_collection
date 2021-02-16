@@ -1,4 +1,6 @@
-console.log(req.params.id)
+
+const callId = window.location.pathname.split("/").pop();
+const id1 = "8HkZo9bYEU";
 
 
 $.ajax({
@@ -6,6 +8,4 @@ $.ajax({
     method: "GET"
 }).then(function (response) {
     console.log(response)
-    response.render()
-    window.location.replace('/game');
 })
