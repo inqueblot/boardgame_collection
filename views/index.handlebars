@@ -9,34 +9,22 @@
 </head>
 
 <body>
-  <div class="columns">
-    <div class="column is-3">
-      <article class="panel is-link">
-        <p class="panel-heading">
-          Link
-        </p>
-        <div class="panel-block">
-          <p class="control has-icons-left">
-            <input class="input" type="text" placeholder="Text input" id="game-name-input">
-            <span class="icon is-left">
-              <i class="fas fa-search" aria-hidden="true"></i>
-            </span>
-          </p>
-          <input class="button" type="submit" id="search">
-        </div>
-      </article>
+  <div class="box">
+    <h1 class="title is-1">games.[i]</h1>
+    <h2 class="title is-2">Search for a game and add it to your collection.</h2>
+    <input class="input is-primary" type="text" placeholder="Primary input">
+    <input class="button" type="submit" id="search">
+
+
+    <div class="content">
+      <table id="game-search-result">
+      </table>
+
+      <!-- Content -->
     </div>
-
-    <div class="column is-9">
-      <div class="content">
-        <table id="game-search-result">
-        </table>
-
-        <!-- Content -->
-      </div>
-    </div>
-
   </div>
+
+
 
 </body>
 
