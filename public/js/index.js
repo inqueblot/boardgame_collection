@@ -33,7 +33,6 @@ $(document).ready(function () {
       // responseList(response);
       $(".nextView").click(function (event) {
         event.preventDefault();
-        // let callId = $(this).attr("value")
         window.location.href = "/game/" + $(this).attr("value");
       });
     });
