@@ -1,3 +1,16 @@
+h1, h2 {
+    text-align: center;
+}
+
+#search {
+    margin: 20px;
+    
+}
+
+.hide {
+    display: none;
+}
+
 .nextView:hover {
   cursor: pointer;
   position: relative;
