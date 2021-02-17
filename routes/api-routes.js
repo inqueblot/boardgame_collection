@@ -5,8 +5,6 @@ const util = require("util");
 module.exports = function (app) {
     // GET route for getting a collection
     app.get("/api/collection", function (req, res) {
-        // Write code here to retrieve all of the todos from the database and res.json them
-        // back to the user
         Collection.findAll({}).then(function (results) {
             // results are available to us inside the .then
             res.json(results);
