@@ -24,3 +24,17 @@ h1, h2 {
 .save-btn {
   cursor: pointer;
 }
+
+ body {
+  background-color: aqua;
+} 
+
+.cardcolor{
+ border-radius: 5px ;
+ box-shadow: black;
+ border-color: grey;
+ border-style: solid;
+ border-width: 2px ;
+ height: 250px
+ 
+}
