@@ -1,14 +1,14 @@
-h1, h2 {
-    text-align: center;
+h1,
+h2 {
+  text-align: center;
 }
 
 #search {
-    margin: 20px;
-    
+  margin: 20px;
 }
 
 .hide {
-    display: none;
+  display: none;
 }
 
 .nextView:hover {
@@ -23,4 +23,13 @@ h1, h2 {
 }
 .save-btn {
   cursor: pointer;
+}
+#box {
+  /* background-color: rgba(9, 241, 9, 0.308); */
+  background-color: #48c78e;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  border: solid rgb(37, 172, 37);
+  color: white;
 }

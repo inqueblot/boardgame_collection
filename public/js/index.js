@@ -5,7 +5,7 @@ $(document).ready(function () {
   $("#search").on("click", function (event) {
     event.preventDefault();
 
-    var suggestions = $("#suggestions")
+    var suggestions = $("#suggestions");
     suggestions.addClass("hide");
     // CLEAR SEARCH ARRAY FOR NEW SEARCH \\
     searchArr = [];
@@ -148,15 +148,30 @@ $(document).ready(function () {
     const result = searchArr.filter(({ id }) => gameId.includes(id));
     // console.log(result);
     const [resultOb] = result;
-    console.log(resultOb);
+    // console.log(resultOb);
     // Send the POST request.
     $.ajax("/api/game", {
       type: "POST",
       data: resultOb,
-    }).then(function (err) {
-      console.log("created new game");
+    }).then(function (results) {
+      console.log(results);
       // Reload the page to get the updated list
       // location.reload();
+      confirmAddModal(results);
     });
   }
+
+  // CONFIRMATION MODAL THAT GAME WAS ADDED TO COLLECTION \\
+  confirmAddModal = (results) => {
+    console.log(results);
+    const nameGameCon = $(
+      `<h4 style="color:white;">You have added "${results}" to your collection</h4>`
+    );
+    $("#modal-result").append(nameGameCon);
+    $("#modal-act").addClass("is-active");
+    setTimeout(function () {
+      $("#modal-act").removeClass("is-active");
+      $(nameGameCon).detach();
+    }, 2000);
+  };
 });
