@@ -6,7 +6,7 @@
 $.get("/api/collection", function (data) {
     data.forEach(element => {
         console.log(element.name)
-        let table = `<tr><td>${element.name}</td>`
+        let table = `<tr><td><a href="/game/${element.bg_id}"</a>${element.name}</td>`
         table += `<td>${element.minPlayers}</td>`
         table += `<td>${element.maxPlayers}</td>`
         table += `<td>${element.playTime}</td>`
