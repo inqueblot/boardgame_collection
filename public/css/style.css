@@ -33,3 +33,33 @@ h2 {
   border: solid rgb(37, 172, 37);
   color: white;
 }
+.content-table {
+  margin: 25px 0;
+  min-width: 500px;
+  border-bottom: 1px solid lightgrey;
+}
+.content-table tr th {
+  background-color: #00d1b2;
+  width: 100%;
+  color: white;
+  padding: 15px;
+}
+.td-title,
+.td-body {
+  border-bottom: 1px solid rgb(241, 239, 239);
+  padding: 15px;
+}
+.content-table tr:nth-of-type(odd) {
+  background-color: lightgrey;
+}
+.td-title {
+  font-weight: bold;
+}
+.tr:last-of-type {
+  border-bottom: 2px solid #00d1b2;
+}
+.buttons-pic {
+  display: flex;
+  justify-content: space-evenly;
+  margin-left: 25px;
+}
