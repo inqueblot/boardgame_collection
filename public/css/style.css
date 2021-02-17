@@ -35,7 +35,7 @@ h2 {
 }
 .content-table {
   margin: 25px 0;
-  min-width: 500px;
+  width: 100%; 
   border-bottom: 1px solid lightgrey;
 }
 .content-table tr th {
@@ -65,6 +65,7 @@ h2 {
 }
 body {
   background-color: aqua;
+
 }
 
 .cardcolor {
@@ -74,4 +75,9 @@ body {
   border-style: solid;
   border-width: 2px;
   height: 250px;
+}
+
+.gamecolumns {
+  height:75%;
+  width:75%;
 }
