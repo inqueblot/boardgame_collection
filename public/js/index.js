@@ -1,6 +1,27 @@
 "strict";
 
 $(document).ready(function () {
+  // document.addEventListener("DOMContentLoaded", function(event) { 
+    //do stuff here
+    // let suggestions=
+    $.ajax({
+      url: "https://api.boardgameatlas.com/api/search?order_by=popularity&ascending=false&client_id=JLBr5npPhV",
+      method: "GET",
+    }).then(function (response) {
+      console.log(response);
+      // clearResults()
+      // responseList(response);
+      // $(".nextView").click(function (event) {
+      //   event.preventDefault();
+      //   window.location.href = "/game/" + $(this).attr("value");
+      // });
+    });
+    
+    
+      
+  
+  // );
+
   // SEARCH GAME NAME INPUT AND SUBMIT BUTTON \\
   $("#search").on("click", function (event) {
     event.preventDefault();
@@ -49,13 +70,7 @@ $(document).ready(function () {
 
     $("#game-search-result").children().remove();
 
-}
-  // const clearTable = (response) => {
-  //   response.games.length >= 1
-  //     ? $(".search-table").detach() & responseList(response)
-  //     : console.log("no result");
-  // };
-
+  }
 
   const responseList = (response) => {
     let gameinfo = $("#game-search-result");
@@ -82,6 +97,7 @@ $(document).ready(function () {
       } = response.games[i];
 
       // BUILD SEARCH RESPONSE TABLES FOR SEARCHED GAMES \\
+      
       let col = $("<div class='column'>")
       let nametag = $("<strong>");
       let image = $("<img>")
