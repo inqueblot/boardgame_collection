@@ -32,7 +32,7 @@ $(document).ready(function () {
       method: "GET",
     }).then(function (response) {
       // clearTable(response);
-      // responseList(response);
+      responseList(response);
       $(".nextView").click(function (event) {
         event.preventDefault();
         window.location.href = "/game/" + $(this).attr("value");
@@ -44,13 +44,11 @@ $(document).ready(function () {
   let searchArr = [];
 
   // CLEAR PREVIOUS SEARCH RESULT TABLES \\
-  const clearTable = (response) => {
-    response.games.length >= 1
-      ? $(".search-table").detach() & responseList(response)
-      : console.log("no result");
-
-     
-  };
+  // const clearTable = (response) => {
+  //   response.games.length >= 1
+  //     ? $(".search-table").detach() & responseList(response)
+  //     : console.log("no result");
+  // };
 
 
   const responseList = (response) => {
