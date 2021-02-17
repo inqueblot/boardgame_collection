@@ -32,6 +32,7 @@ $(document).ready(function () {
       method: "GET",
     }).then(function (response) {
       // clearTable(response);
+      clearResults()
       responseList(response);
       $(".nextView").click(function (event) {
         event.preventDefault();
@@ -44,6 +45,11 @@ $(document).ready(function () {
   let searchArr = [];
 
   // CLEAR PREVIOUS SEARCH RESULT TABLES \\
+  function clearResults(){
+
+    $("#game-search-result").children().remove();
+
+}
   // const clearTable = (response) => {
   //   response.games.length >= 1
   //     ? $(".search-table").detach() & responseList(response)
