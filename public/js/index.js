@@ -1,26 +1,91 @@
 "strict";
 
 $(document).ready(function () {
-  // document.addEventListener("DOMContentLoaded", function(event) { 
-    //do stuff here
-    // let suggestions=
+
     $.ajax({
       url: "https://api.boardgameatlas.com/api/search?order_by=popularity&ascending=false&client_id=JLBr5npPhV",
       method: "GET",
     }).then(function (response) {
       console.log(response);
       // clearResults()
-      // responseList(response);
-      // $(".nextView").click(function (event) {
-      //   event.preventDefault();
-      //   window.location.href = "/game/" + $(this).attr("value");
-      // });
+      suggestionList(response);
+      $(".nextView").click(function (event) {
+        event.preventDefault();
+        window.location.href = "/game/" + $(this).attr("value");
+      });
     });
     
+    const suggestionList = (response) => {
+      let suggestions = $("#suggestions");
+      let mainColumn = $("<div class='columns'>");
+      // let title = $("<p>");
+    
+      // title.text("Search results")
+      // suggestions.append(title);
+      // suggestions.append("<br>")
+  
+      for (let i = 0; i < 5; i++) {
+        const {
+          name,
+          min_players,
+          max_players,
+          max_playtime: playTime,
+          min_age: age,
+          primary_designer: { name: designer },
+          publisher,
+          year_published: year,
+          msrp,
+          id,
+          images: { small },
+        } = response.games[i];
+  
+        // BUILD SEARCH RESPONSE TABLES FOR SEARCHED GAMES \\
+        
+        let col = $("<div class='column'>")
+        let nametag = $("<strong>");
+        let image = $("<img>")
+        let cardColor = $("<div class='card cardcolor'>");
+        let cardContent = $("<div class='card-content'>");
+        let content = $("<div class='content has-text-centered'>")
+  
+     
+        nametag.text(name);
+        image.attr("src", `${small}`)
+        image.attr("value", `${id}`)
+        image.addClass("nextView")
+        col.append(cardColor);
+        cardColor.append(cardContent);
+        cardContent.append(content);
+        content.append(nametag);
+        content.append("<br>");
+        content.append("<br>");
+        content.append(image);
+  
+        mainColumn.append(col);
+        suggestions.append(mainColumn)
+  
+        const gameObject = {
+          id,
+          name,
+          min_players,
+          max_players,
+          playTime,
+          age,
+          publisher,
+          designer,
+          year,
+          msrp,
+          images: { small },
+        };
+        // PUSH GAMEOBJECT TO EMPTY ARRAY AFTER EACH SEARCH \\
+        searchArr.push(gameObject);
+        // console.log(searchArr);
+      }
+    };
     
       
   
-  // );
+  
 
   // SEARCH GAME NAME INPUT AND SUBMIT BUTTON \\
   $("#search").on("click", function (event) {
@@ -179,3 +244,5 @@ $(document).ready(function () {
     }, 2000);
   };
 });
+
+
