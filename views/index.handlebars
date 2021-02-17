@@ -12,7 +12,7 @@
   <div class="box has-text-centered">
     <img src="https://www.dietsinreview.com/diet_column/wp-content/uploads/2014/01/dice-e1390265093443.jpg" height="10%"
       width="10%">
-    <h1 class="title is-1">games.[i]</h1>
+    <h1 class="title is-1">games[i]</h1>
 
     <br>
     <input class="input is-primary" type="text" style="width: 50%;" placeholder="search" id="game-name-input">
@@ -23,7 +23,7 @@
   <div class="content has-text-centered" id="suggestions">
     <p><strong>Checkout these popular games!</strong></p>
     <br>
-    <div class="columns">
+    {{!-- <div class="columns">
       <div class="column">
         <div class="card cardcolor">
           <div class="card-content">
@@ -88,12 +88,13 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> --}}
   </div>
 
-  <div id="game-search-result" class="content">
-    
+  <div id="game-search-result" class="content has-text-centered">
+   {{!--search results --}} 
   </div>
+
   {{!-- Modal  --}}
   <div id="modal"></div>
   <div id="modal-act" class="modal">

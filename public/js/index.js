@@ -1,6 +1,92 @@
 "strict";
 
 $(document).ready(function () {
+
+    $.ajax({
+      url: "https://api.boardgameatlas.com/api/search?order_by=popularity&ascending=false&client_id=JLBr5npPhV",
+      method: "GET",
+    }).then(function (response) {
+      console.log(response);
+      // clearResults()
+      suggestionList(response);
+      $(".nextView").click(function (event) {
+        event.preventDefault();
+        window.location.href = "/game/" + $(this).attr("value");
+      });
+    });
+    
+    const suggestionList = (response) => {
+      let suggestions = $("#suggestions");
+      let mainColumn = $("<div class='columns'>");
+      // let title = $("<p>");
+    
+      // title.text("Search results")
+      // suggestions.append(title);
+      // suggestions.append("<br>")
+  
+      for (let i = 0; i < 5; i++) {
+        const {
+          name,
+          min_players,
+          max_players,
+          max_playtime: playTime,
+          min_age: age,
+          primary_designer: { name: designer },
+          publisher,
+          year_published: year,
+          msrp,
+          id,
+          images: { small },
+        } = response.games[i];
+  
+        // BUILD SEARCH RESPONSE TABLES FOR SEARCHED GAMES \\
+        
+        let col = $("<div class='column'>")
+        let nametag = $("<strong>");
+        let image = $("<img>")
+        let cardColor = $("<div class='card cardcolor'>");
+        let cardContent = $("<div class='card-content'>");
+        let content = $("<div class='content has-text-centered'>")
+  
+     
+        nametag.text(name);
+        image.attr("src", `${small}`)
+        image.attr("value", `${id}`)
+        image.addClass("nextView")
+        col.append(cardColor);
+        cardColor.append(cardContent);
+        cardContent.append(content);
+        content.append(nametag);
+        content.append("<br>");
+        content.append("<br>");
+        content.append(image);
+  
+        mainColumn.append(col);
+        suggestions.append(mainColumn)
+  
+        const gameObject = {
+          id,
+          name,
+          min_players,
+          max_players,
+          playTime,
+          age,
+          publisher,
+          designer,
+          year,
+          msrp,
+          images: { small },
+        };
+        // PUSH GAMEOBJECT TO EMPTY ARRAY AFTER EACH SEARCH \\
+        searchArr.push(gameObject);
+        // console.log(searchArr);
+      }
+    };
+    
+      
+  
+  
+
   // SEARCH GAME NAME INPUT AND SUBMIT BUTTON \\
   $("#search").on("click", function (event) {
     event.preventDefault();
@@ -31,8 +117,9 @@ $(document).ready(function () {
       url: gameSearch,
       method: "GET",
     }).then(function (response) {
-      clearTable(response);
-      // responseList(response);
+      // clearTable(response);
+      clearResults()
+      responseList(response);
       $(".nextView").click(function (event) {
         event.preventDefault();
         window.location.href = "/game/" + $(this).attr("value");
@@ -44,14 +131,21 @@ $(document).ready(function () {
   let searchArr = [];
 
   // CLEAR PREVIOUS SEARCH RESULT TABLES \\
-  const clearTable = (response) => {
-    response.games.length >= 1
-      ? $(".search-table").detach() & responseList(response)
-      : console.log("no result");
-  };
+  function clearResults(){
 
-  // LOOP THROUGH RESPONSE AND CREATE EACH VARIABLE \\
+    $("#game-search-result").children().remove();
+
+  }
+
   const responseList = (response) => {
+    let gameinfo = $("#game-search-result");
+    let mainColumn = $("<div class='columns'>");
+    let title = $("<p>");
+  
+    title.text("Search results")
+    gameinfo.append(title);
+    gameinfo.append("<br>")
+
     for (let i = 0; i < response.games.length; i++) {
       const {
         name,
@@ -68,56 +162,30 @@ $(document).ready(function () {
       } = response.games[i];
 
       // BUILD SEARCH RESPONSE TABLES FOR SEARCHED GAMES \\
-      const beginTable = $('<table class="search-table" >');
-      $("#game-search-result").append(beginTable);
-      let newHeaderRow = $("<tr>");
-      let headerData = $("<th>");
-      headerData.text(name);
-      beginTable.append(newHeaderRow);
-      newHeaderRow.append(headerData);
-      let newRow1 = $("<tr>");
-      let row1data = $("<td>");
-      row1data.text(`Min Players = ${min_players}`);
-      beginTable.append(newRow1);
-      newRow1.append(row1data);
-      let newRow2 = $("<tr>");
-      let row2data = $("<td>");
-      row2data.text(`Max Players = ${max_players}`);
-      beginTable.append(newRow2);
-      newRow2.append(row2data);
-      let newRow3 = $("<tr>");
-      let row3data = $("<td>");
-      row3data.text(`Play Time = ${playTime} min`);
-      beginTable.append(newRow3);
-      newRow3.append(row3data);
-      let newRow4 = $("<tr>");
-      let row4data = $("<td>");
-      row4data.text(`Age = ${age}`);
-      beginTable.append(newRow4);
-      newRow4.append(row4data);
-      let newRow5 = $("<tr>");
-      let row5data = $("<td>");
-      row5data.text(`Publisher = ${publisher}`);
-      beginTable.append(newRow5);
-      newRow5.append(row5data);
-      let newRow6 = $("<tr>");
-      let row6data = $("<td>");
-      row6data.text(`Released = ${year}`);
-      beginTable.append(newRow6);
-      newRow6.append(row6data);
-      let newRow7 = $("<tr>");
-      let row7data = $("<td>");
-      row7data.text(`Cost = $${msrp}`);
-      beginTable.append(newRow7);
-      newRow7.append(row7data);
-      beginTable.append(`<img class="nextView" value=${id} src='${small}' />`);
-      lineBrk = "<br>";
-      beginTable.append(lineBrk);
-      saveBtn = $("<button>Save</button>");
-      saveBtn.attr("data-number", id);
-      saveBtn.addClass("save-btn");
-      beginTable.append(saveBtn);
-      beginTable.append("</table>");
+      
+      let col = $("<div class='column'>")
+      let nametag = $("<strong>");
+      let image = $("<img>")
+      let cardColor = $("<div class='card cardcolor'>");
+      let cardContent = $("<div class='card-content'>");
+      let content = $("<div class='content has-text-centered'>")
+
+   
+      nametag.text(name);
+      image.attr("src", `${small}`)
+      image.attr("value", `${id}`)
+      image.addClass("nextView")
+      col.append(cardColor);
+      cardColor.append(cardContent);
+      cardContent.append(content);
+      content.append(nametag);
+      content.append("<br>");
+      content.append("<br>");
+      content.append(image);
+
+      mainColumn.append(col);
+      gameinfo.append(mainColumn)
+
       const gameObject = {
         id,
         name,
@@ -160,6 +228,7 @@ $(document).ready(function () {
       confirmAddModal(results);
     });
   }
+  // LOOP THROUGH RESPONSE AND CREATE EACH VARIABLE \\
 
   // CONFIRMATION MODAL THAT GAME WAS ADDED TO COLLECTION \\
   confirmAddModal = (results) => {
@@ -175,3 +244,5 @@ $(document).ready(function () {
     }, 2000);
   };
 });
+
+
