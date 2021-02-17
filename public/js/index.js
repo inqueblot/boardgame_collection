@@ -1,6 +1,20 @@
 "strict";
 
 $(document).ready(function () {
+  // POPUP IF SEARCH RETURNED ZERO RESULTS \\
+  const noResults = () => {
+    const errMessage = $(
+      `<h4 class="error-alert" style="color:white;">Invalid Entry, Please Try Again!</h4>`
+    );
+    $("#modal-result").append(errMessage);
+    $("#modal-act").addClass("is-active");
+    setTimeout(function () {
+      $("#modal-act").removeClass("is-active");
+      $(errMessage).detach();
+      location.reload();
+    }, 2000);
+  };
+
   // SEARCH GAME NAME INPUT AND SUBMIT BUTTON \\
   $("#search").on("click", function (event) {
     event.preventDefault();
@@ -47,7 +61,7 @@ $(document).ready(function () {
   const clearTable = (response) => {
     response.games.length >= 1
       ? $(".search-table").detach() & responseList(response)
-      : console.log("no result");
+      : noResults();
   };
 
   // LOOP THROUGH RESPONSE AND CREATE EACH VARIABLE \\
@@ -59,8 +73,8 @@ $(document).ready(function () {
         max_players,
         max_playtime: playTime,
         min_age: age,
-        primary_designer: { name: designer },
         publisher,
+        // primary_designer: { name: designer },
         year_published: year,
         msrp,
         id,
@@ -77,46 +91,40 @@ $(document).ready(function () {
       newHeaderRow.append(headerData);
       let newRow1 = $("<tr>");
       let row1data = $("<td>");
-      row1data.text(`Min Players = ${min_players}`);
+      row1data.text(`Min Players = ${min_players || "NA"}`);
       beginTable.append(newRow1);
       newRow1.append(row1data);
       let newRow2 = $("<tr>");
       let row2data = $("<td>");
-      row2data.text(`Max Players = ${max_players}`);
+      row2data.text(`Max Players = ${max_players || "NA"}`);
       beginTable.append(newRow2);
       newRow2.append(row2data);
       let newRow3 = $("<tr>");
       let row3data = $("<td>");
-      row3data.text(`Play Time = ${playTime} min`);
+      row3data.text(`Play Time = ${playTime || "NA"} min`);
       beginTable.append(newRow3);
       newRow3.append(row3data);
       let newRow4 = $("<tr>");
       let row4data = $("<td>");
-      row4data.text(`Age = ${age}`);
+      row4data.text(`Age = ${age || "NA"}`);
       beginTable.append(newRow4);
       newRow4.append(row4data);
       let newRow5 = $("<tr>");
       let row5data = $("<td>");
-      row5data.text(`Publisher = ${publisher}`);
+      row5data.text(`Publisher = ${publisher || "NA"}`);
       beginTable.append(newRow5);
       newRow5.append(row5data);
       let newRow6 = $("<tr>");
       let row6data = $("<td>");
-      row6data.text(`Released = ${year}`);
+      row6data.text(`Released = ${year || "NA"}`);
       beginTable.append(newRow6);
       newRow6.append(row6data);
       let newRow7 = $("<tr>");
       let row7data = $("<td>");
-      row7data.text(`Cost = $${msrp}`);
+      row7data.text(`Cost = $${msrp || "NA"}`);
       beginTable.append(newRow7);
       newRow7.append(row7data);
       beginTable.append(`<img class="nextView" value=${id} src='${small}' />`);
-      lineBrk = "<br>";
-      beginTable.append(lineBrk);
-      saveBtn = $("<button>Save</button>");
-      saveBtn.attr("data-number", id);
-      saveBtn.addClass("save-btn");
-      beginTable.append(saveBtn);
       beginTable.append("</table>");
       const gameObject = {
         id,
@@ -126,14 +134,13 @@ $(document).ready(function () {
         playTime,
         age,
         publisher,
-        designer,
+        // primary_designer: { name: designer },
         year,
         msrp,
         images: { small },
       };
       // PUSH GAMEOBJECT TO EMPTY ARRAY AFTER EACH SEARCH \\
       searchArr.push(gameObject);
-      // console.log(searchArr);
     }
   };
 
@@ -143,35 +150,15 @@ $(document).ready(function () {
   // AJAX CALL TO BACK END WITH FILTERED GAME OBJECT \\
   function newAjaxCall() {
     let gameId = $(this).attr("data-number");
-    // console.log(gameId);
-    // console.log(searchArr);
     const result = searchArr.filter(({ id }) => gameId.includes(id));
-    // console.log(result);
     const [resultOb] = result;
-    // console.log(resultOb);
     // Send the POST request.
     $.ajax("/api/game", {
       type: "POST",
       data: resultOb,
     }).then(function (results) {
       console.log(results);
-      // Reload the page to get the updated list
-      // location.reload();
       confirmAddModal(results);
     });
   }
-
-  // CONFIRMATION MODAL THAT GAME WAS ADDED TO COLLECTION \\
-  confirmAddModal = (results) => {
-    console.log(results);
-    const nameGameCon = $(
-      `<h4 style="color:white;">You have added "${results}" to your collection</h4>`
-    );
-    $("#modal-result").append(nameGameCon);
-    $("#modal-act").addClass("is-active");
-    setTimeout(function () {
-      $("#modal-act").removeClass("is-active");
-      $(nameGameCon).detach();
-    }, 2000);
-  };
 });
