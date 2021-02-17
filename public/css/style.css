@@ -63,3 +63,15 @@ h2 {
   justify-content: space-evenly;
   margin-left: 25px;
 }
+body {
+  background-color: aqua;
+}
+
+.cardcolor {
+  border-radius: 5px;
+  box-shadow: black;
+  border-color: grey;
+  border-style: solid;
+  border-width: 2px;
+  height: 250px;
+}
