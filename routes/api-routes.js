@@ -6,7 +6,7 @@ module.exports = function (app) {
     // GET route for getting a collection
     app.get("/api/collection", function (req, res) {
         Collection.findAll({}).then(function (results) {
-            // results are available to us inside the .then
+            console.log(results)// results are available to us inside the .then
             res.json(results);
         });
     })
