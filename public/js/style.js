@@ -4,6 +4,10 @@ document.addEventListener('DOMContentLoaded', () => {
     window.location.href = '/'
   })
 
+  $("#collection").click(function () {
+    window.location.href = '/collection'
+  })
+
   // Get all "navbar-burger" elements
   const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
 

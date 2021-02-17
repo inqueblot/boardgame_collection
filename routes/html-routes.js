@@ -10,4 +10,8 @@ module.exports = function (app, express) {
     app.get("/game/:id", (req, res) => {
         res.render("game")
     })
+
+    app.get("/collection", (req, res) => {
+        res.render("collection")
+    })
 } 

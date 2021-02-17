@@ -12,3 +12,4 @@ $.ajax({
     console.log(game)
     $("#game-search-result").append(`<img src=${game.image_url}>`)
 })
+
