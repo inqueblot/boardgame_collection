@@ -72,7 +72,6 @@ $(document).ready(function () {
     // SEND RESPONSE TO BUILD OBJECT FOR SAVE \\
     const gameObject = {
       name,
-      description,
       minPlayers,
       maxPlayers,
       playTime,
