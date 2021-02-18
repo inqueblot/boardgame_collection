@@ -89,12 +89,13 @@ html {
 
 #collectionColumn2 {
   margin: auto;
-  height: 75%;
-  width:75%;
+  width:90%;
+  
 }
 
 #collectionColumn1 {
-  margin-left: 20px ;
+  margin:0 auto;
+  width:90%;
  
 }
 
