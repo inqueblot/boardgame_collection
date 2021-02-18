@@ -5,6 +5,7 @@ const passport = require("../config/passport");
 const { Op } = require("sequelize");
 const util = require("util");
 const db = require("../models");
+const isAuthenticated = require("../config/middleware/isAuthenticated")
 // Routes
 // =============================================================
 module.exports = function (app) {
@@ -18,9 +19,9 @@ module.exports = function (app) {
         });
     });
     // // POST route for saving a new todo. We can create todo with the data in req.body
-    app.post("/api/game/", function (req, res) {
+    app.post("/api/game/", isAuthenticated, function (req, res) {
         let values = req.body;
-        console.group(req.body);
+        console.log(req.user)
         Collection.create({
             name: values.name,
             bg_id: values.id,
@@ -64,10 +65,10 @@ module.exports = function (app) {
     app.post("/api/login", passport.authenticate("local"), (req, res) => {
         // Sending back a password, even a hashed password, isn't a good idea
         res.json({
-          email: req.user.email,
-          id: req.user.id
+            email: req.user.email,
+            id: req.user.id
         });
-      });
+    });
 
     app.get("/api/collection/players/:number", function (req, res) {
         console.log(req.params.number)
