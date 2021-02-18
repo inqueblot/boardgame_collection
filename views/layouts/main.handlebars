@@ -28,15 +28,16 @@
                 Collection
             </a>
         </div>
-        
+
         <div class="navbar-end">
             <div class="navbar-item">
+                <div id="loginEmail">{{email}}</div>
                 <div class="buttons">
-                    <a class="button is-primary">
-                        <strong>Sign up</strong>
-                    </a>
-                    <a class="button is-light">
+                    <a id="login" class="button is-light">
                         Log in
+                    </a>
+                    <a id="logout" class="button is-light">
+                        Log out
                     </a>
                 </div>
             </div>
@@ -47,8 +48,8 @@
 
 <body>
     {{{ body }}}
-    
-   
+
+
 
 
     <script src="/js/style.js"></script>

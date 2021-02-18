@@ -8,6 +8,14 @@ document.addEventListener('DOMContentLoaded', () => {
     window.location.href = '/collection'
   })
 
+  $("#login").click(function () {
+    window.location.href = '/users'
+  })
+
+  $("#logout").click(function () {
+    window.location.href = '/logout'
+  })
+
   // Get all "navbar-burger" elements
   const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
 
