@@ -88,17 +88,17 @@ $(document).ready(function () {
   buildObject = (response) => {
     console.log(response);
     const gameObject = {
-      //   id,
-      //   name,
-      //   min_players,
-      //   max_players,
-      //   playTime,
-      //   age,
-      //   publisher,
-      //   designer,
-      //   year,
-      //   msrp,
-      //   images: { small },
+        // id,
+        // name,
+        // min_players,
+        // max_players,
+        // playTime,
+        // age,
+        // publisher,
+        // designer,
+        // year,
+        // msrp,
+        // images: { small },
       // PUSH GAMEOBJECT TO EMPTY ARRAY AFTER EACH SEARCH \\
       // gameObjArr.push(gameObject);
     };

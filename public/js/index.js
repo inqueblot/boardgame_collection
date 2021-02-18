@@ -7,7 +7,7 @@ $(document).ready(function () {
       method: "GET",
     }).then(function (response) {
       console.log(response);
-      // clearResults()
+    
       suggestionList(response);
       $(".nextView").click(function (event) {
         event.preventDefault();
@@ -18,12 +18,7 @@ $(document).ready(function () {
     const suggestionList = (response) => {
       let suggestions = $("#suggestions");
       let mainColumn = $("<div class='columns'>");
-      // let title = $("<p>");
     
-      // title.text("Search results")
-      // suggestions.append(title);
-      // suggestions.append("<br>")
-  
       for (let i = 0; i < 5; i++) {
         const {
           name,
@@ -39,7 +34,7 @@ $(document).ready(function () {
           images: { small },
         } = response.games[i];
   
-        // BUILD SEARCH RESPONSE TABLES FOR SEARCHED GAMES \\
+        // BUILD SEARCH RESPONSE TABLES FOR SUGGESTED GAMES ON HOMEPAGE
         
         let col = $("<div class='column'>")
         let nametag = $("<strong>");
@@ -48,7 +43,6 @@ $(document).ready(function () {
         let cardContent = $("<div class='card-content'>");
         let content = $("<div class='content has-text-centered'>")
   
-     
         nametag.text(name);
         image.attr("src", `${small}`)
         image.attr("value", `${id}`)
@@ -83,10 +77,6 @@ $(document).ready(function () {
       }
     };
     
-      
-  
-  
-
   // SEARCH GAME NAME INPUT AND SUBMIT BUTTON \\
   $("#search").on("click", function (event) {
     event.preventDefault();
@@ -161,7 +151,7 @@ $(document).ready(function () {
         images: { small },
       } = response.games[i];
 
-      // BUILD SEARCH RESPONSE TABLES FOR SEARCHED GAMES \\
+      // BUILD SEARCH RESPONSE TABLES FOR SEARCHED GAMES 
       
       let col = $("<div class='column'>")
       let nametag = $("<strong>");

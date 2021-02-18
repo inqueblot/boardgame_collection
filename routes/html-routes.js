@@ -15,7 +15,7 @@ module.exports = function (app, express) {
         res.render("collection")
     })
 
-    app.get("/signup", (req, res) => {
-        res.render("signUp_login")
+    app.get("/users", (req, res) => {
+        res.render("users")
     })
 } 

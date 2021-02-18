@@ -32,6 +32,22 @@ module.exports = function (app) {
       res.json(values.name);
     });
   });
+
+  app.post("/api/users", function(req, res) {
+    console.log(req.body);
+    // create takes an argument of an object describing the item we want to
+    // insert into our table. 
+    db.Users.create({
+      email: req.body.email,
+      password: req.body.password
+    }).then(function(dbUsers) {
+      // We have access to the new todo as an argument inside of the callback function
+      res.json(dbUsers);
+    });
+  });
+
+
+
 };
 //     // Write code here to create a new todo and save it to the database
 //     // and then res.json back the new todo to the user
