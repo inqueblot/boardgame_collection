@@ -1,6 +1,9 @@
 var { Collection } = require("../models");
+var { Users } = require("../models");
+
 const { Op } = require("sequelize");
 const util = require("util");
+const db = require("../models");
 // Routes
 // =============================================================
 module.exports = function (app) {
@@ -37,6 +40,26 @@ module.exports = function (app) {
         });
     });
 
+    app.delete("/api/collection/:id", function (req, res) {
+        Collection.destroy({
+            where: {
+                bg_id: req.params.id
+            }
+        }).then(() => res.send("success"))
+    })
+
+
+    app.post("/api/users/", function (req, res) {
+        let values = req.body;
+        console.log(req.body);
+        Users.create({
+            email: values.email,
+            password: values.password
+            
+        }).then(() => res.send("success"))
+        
+    });
+
 
     app.get("/api/collection/players/:number", function (req, res) {
         console.log(typeof req.params.number)
@@ -69,12 +92,7 @@ module.exports = function (app) {
     // });
 
 };
-//     // Write code here to create a new todo and save it to the database
-//     // and then res.json back the new todo to the user
-//     db.Todo.create(
-//         req.body
 
-//     )
 
 //     // Write code here to create a new todo and save it to the database
 //     // and then res.json back the new todo to the user
@@ -92,21 +110,5 @@ module.exports = function (app) {
 // .catch(function (err) {
 //   console.log(err);
 // });
-// // DELETE route for deleting todos. We can get the id of the todo to be deleted from
-// // req.params.id
-// app.delete("/api/todos/:id", function (req, res) {
-//     let id = req.params.id;
-//     db.Todo.destroy({
-//         where: { id }
-//     }).then(res.end());
-// });
-// // PUT route for updating todos. We can get the updated todo data from req.body
-// app.put("/api/todos", function (req, res) {
-//     console.log(req.body);
-//     db.Todo.update(
-//         { complete: req.body.complete },
-//         { where: { id: req.body.id } }
-//     ).then(function (result) {
-//         res.json(result)
-//     })
-//   });
+
+
