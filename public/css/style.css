@@ -1,4 +1,3 @@
-
 h2 {
   text-align: center;
 }
@@ -47,11 +46,11 @@ h2 {
 .modal-alert {
   text-align: center;
   margin-left: auto;
-  margin-right: ;
+  margin-right: auto;
 }
 .content-table {
   margin: 25px 0;
-  width: 100%; 
+  width: 100%;
   border-bottom: 1px solid lightgrey;
 }
 .content-table tr th {
@@ -77,9 +76,7 @@ h2 {
   margin-left: 25px;
 }
 
-
 html {
-  
   background-color: aqua;
 }
 
@@ -93,19 +90,16 @@ html {
 }
 
 .gamecolumns {
-  margin:auto;
-  width:90%;
+  margin: auto;
+  width: 90%;
 }
 
 #collectionColumn2 {
   margin: auto;
-  width:90%;
-  
+  width: 90%;
 }
 
 #collectionColumn1 {
-  margin:0 auto;
-  width:90%;
- 
+  margin: 0 auto;
+  width: 90%;
 }
-

@@ -12,7 +12,8 @@ $(document).ready(function () {
     url: `https://api.boardgameatlas.com/api/search?ids=${callId}&client_id=${id1}`,
     method: "GET",
   }).then(function (response) {
-    console.log(response)
+    console.log(response);
+    console.log(response.games[0].primary_designer);
     // SEND RESPONSE TO BUILD DISPLAY TABLE \\
     buildTable(response);
   });
@@ -87,7 +88,9 @@ $(document).ready(function () {
     $(".new-table").append(tableRow5);
     const tableRow6 = $(`<tr class="table-row"></tr>`);
     const tableData1f = $(`<td class="td-title">Designer</td>`);
-    const tableData2f = $(`<td class="td-body">${primary_designer.name || "NA"}</td>`);
+    const tableData2f = $(
+      `<td class="td-body">${primary_designer.name || "NA"}</td>`
+    );
     $(".new-table").append(tableRow6);
     tableRow5.append(tableData1f, tableData2f);
     const tableRow7 = $(`<tr class="table-row"></tr>`);
@@ -118,7 +121,7 @@ $(document).ready(function () {
       type: "POST",
       data: resultOb,
     }).then(function (results) {
-      console.log(results)
+      console.log(results);
       confirmAddModal(results);
     });
   }
