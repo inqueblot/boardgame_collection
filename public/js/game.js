@@ -60,6 +60,7 @@ $(document).ready(function () {
     year
   ) => {
     const {
+      description,
       name,
       msrp,
       id,
