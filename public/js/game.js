@@ -12,14 +12,26 @@ $(document).ready(function () {
     url: `https://api.boardgameatlas.com/api/search?ids=${callId}&client_id=${id1}`,
     method: "GET",
   }).then(function (response) {
-    console.log(response);
-    console.log(response.games[0].primary_designer);
+    // let designer = response.games[0].primary_designer || "NA";
+    let designer = response.games[0].primary_designer
+      ? response.games[0].primary_designer
+      : "NA";
+    designer = designer.name || "NA";
+    let publisher = response.games[0].primary_publisher
+      ? response.games[0].primary_publisher
+      : "NA";
+    publisher = publisher.name || "NA";
+    // designer = response.games[0].primary_designer.name || "NA";
+    // console.log(response);
+    // console.log(response.games[0].primary_designer.name);
+    console.log(publisher);
     // SEND RESPONSE TO BUILD DISPLAY TABLE \\
-    buildTable(response);
+    buildTable(response, designer, publisher);
   });
 
   // BUILDING GAME INFO TABLE AND IMAGE \\
-  buildTable = (response) => {
+  buildTable = (response, designer, publisher) => {
+    console.log(publisher);
     const {
       name,
       description,
@@ -27,14 +39,14 @@ $(document).ready(function () {
       max_players,
       max_playtime: playTime,
       min_age: age,
-      primary_designer,
+      // primary_designer,
       year_published: year,
       msrp,
       id,
       images: { large },
       images: { small },
       url,
-      primary_publisher,
+      // primary_publisher,
     } = response.games[0];
 
     // SEND RESPONSE TO BUILD OBJECT FOR SAVE \\
@@ -45,14 +57,15 @@ $(document).ready(function () {
       max_players,
       playTime,
       age,
-      primary_designer,
+      designer,
       year,
       msrp,
       id,
       images: { small },
-      primary_publisher,
+      publisher,
       url,
     };
+    // console.log(gameObject);
 
     // AMAZON SEARCH URL \\
     amazonSearchURL = `https://www.amazon.com/s?k=${name}+board+game&i=toys-and-games&crid=OW7Q3H9U8YAU&sprefix=${name}+%2Ctoys-and-games%2C208&ref=nb_sb_ss_ts-doa-p_1_6`;
@@ -88,9 +101,7 @@ $(document).ready(function () {
     $(".new-table").append(tableRow5);
     const tableRow6 = $(`<tr class="table-row"></tr>`);
     const tableData1f = $(`<td class="td-title">Designer</td>`);
-    const tableData2f = $(
-      `<td class="td-body">${primary_designer.name || "NA"}</td>`
-    );
+    const tableData2f = $(`<td class="td-body">${designer}</td>`);
     $(".new-table").append(tableRow6);
     tableRow5.append(tableData1f, tableData2f);
     const tableRow7 = $(`<tr class="table-row"></tr>`);
@@ -117,6 +128,7 @@ $(document).ready(function () {
   // SENDING GAME OBJECT TO DB \\
   function saveGameAjax() {
     const [resultOb] = gameObjArr;
+    console.log(resultOb);
     $.ajax("/api/game", {
       type: "POST",
       data: resultOb,

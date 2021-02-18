@@ -9,16 +9,13 @@ h2 {
 .hide {
   display: none;
 }
+.nextView {
+  transition: transform 0.2s;
+}
 
 .nextView:hover {
   cursor: pointer;
-  position: relative;
-  /* top: -25px;
-  left: -35px; */
-  width: 175px;
-  height: auto;
-  display: block;
-  z-index: 999;
+  transform: scale(1.5);
 }
 .save-btn {
   cursor: pointer;

@@ -1,12 +1,11 @@
 "strict";
 
 $(document).ready(function () {
-
   $.ajax({
-    url: "https://api.boardgameatlas.com/api/search?limit=5&client_id=JLBr5npPhV",
+    url:
+      "https://api.boardgameatlas.com/api/search?limit=5&client_id=JLBr5npPhV",
     method: "GET",
   }).then(function (response) {
-
     // clearResults()
     suggestionList(response);
     $(".nextView").click(function (event) {
@@ -27,18 +26,17 @@ $(document).ready(function () {
 
       // BUILD SEARCH RESPONSE TABLES FOR SEARCHED GAMES \\
 
-      let col = $("<div class='column'>")
+      let col = $("<div class='column'>");
       let nametag = $("<strong>");
-      let image = $("<img>")
+      let image = $("<img>");
       let cardColor = $("<div class='card cardcolor'>");
       let cardContent = $("<div class='card-content'>");
-      let content = $("<div class='content has-text-centered'>")
-
+      let content = $("<div class='content has-text-centered'>");
 
       nametag.text(name);
-      image.attr("src", `${small}`)
-      image.attr("value", `${id}`)
-      image.addClass("nextView")
+      image.attr("src", `${small}`);
+      image.attr("value", `${id}`);
+      image.addClass("nextView");
       col.append(cardColor);
       cardColor.append(cardContent);
       cardContent.append(content);
@@ -48,7 +46,7 @@ $(document).ready(function () {
       content.append(image);
 
       mainColumn.append(col);
-      suggestions.append(mainColumn)
+      suggestions.append(mainColumn);
 
       const gameObject = {
         id,
@@ -60,7 +58,6 @@ $(document).ready(function () {
       // console.log(searchArr);
     }
   };
-
 
   // POPUP IF SEARCH RETURNED ZERO RESULTS \\
   const noResults = () => {
@@ -75,9 +72,6 @@ $(document).ready(function () {
       location.reload();
     }, 2000);
   };
-
-
-
 
   // SEARCH GAME NAME INPUT AND SUBMIT BUTTON \\
   $("#search").on("click", function (event) {
@@ -107,7 +101,6 @@ $(document).ready(function () {
       url: gameSearch,
       method: "GET",
     }).then(function (response) {
-
       clearTable(response);
 
       $(".nextView").click(function (event) {
@@ -130,9 +123,9 @@ $(document).ready(function () {
     let mainColumn = $("<div class='columns'>");
     let title = $("<p>");
 
-    title.text("Search results")
+    title.text("Search results");
     gameinfo.append(title);
-    gameinfo.append("<br>")
+    gameinfo.append("<br>");
 
     for (let i = 0; i < response.games.length; i++) {
       const {
@@ -150,19 +143,17 @@ $(document).ready(function () {
 
       // BUILD SEARCH RESPONSE TABLES FOR SEARCHED GAMES \\
 
-      let col = $("<div class='column'>")
+      let col = $("<div class='column'>");
       let nametag = $("<strong>");
-      let image = $("<img>")
+      let image = $("<img>");
       let cardColor = $("<div class='card cardcolor'>");
       let cardContent = $("<div class='card-content'>");
-      let content = $("<div class='content has-text-centered'>")
-
-
+      let content = $("<div class='content has-text-centered'>");
 
       nametag.text(name);
-      image.attr("src", `${small}`)
-      image.attr("value", `${id}`)
-      image.addClass("nextView")
+      image.attr("src", `${small}`);
+      image.attr("value", `${id}`);
+      image.addClass("nextView");
       col.append(cardColor);
       cardColor.append(cardContent);
       cardContent.append(content);
@@ -172,7 +163,7 @@ $(document).ready(function () {
       content.append(image);
 
       mainColumn.append(col);
-      gameinfo.append(mainColumn)
+      gameinfo.append(mainColumn);
 
       const gameObject = {
         id,
@@ -180,12 +171,9 @@ $(document).ready(function () {
         images: { small },
       };
 
-      function clearResults() {
-        $("#game-search-result").children().remove();
-      }
+      // function clearResults() {
+      //   $("#game-search-result").children().remove();
+      // }
     }
   };
-
 });
-
-
