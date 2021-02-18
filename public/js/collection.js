@@ -22,7 +22,6 @@ $.get("/api/collection", function (data) {
 // This function does an API call to delete posts
   $(document).on("click", ".button", deleteGame);
 
-  // SENDING GAME OBJECT TO DB \\
   function deleteGame() {
     var bg_id = $(this).attr("id");
     console.log(bg_id);
@@ -34,17 +33,3 @@ $.get("/api/collection", function (data) {
     });
   }
 
-//   $(".delquote").on("click", function(event) {
-//     var id = $(this).data("id");
-
-//     // Send the DELETE request.
-//     $.ajax("/api/quotes/" + id, {
-//       type: "DELETE"
-//     }).then(
-//       function() {
-//         console.log("deleted id ", id);
-//         // Reload the page to get the updated list
-//         location.reload();
-//       }
-//     );
-//   });
