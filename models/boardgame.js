@@ -13,7 +13,8 @@ module.exports = function (sequelize, DataTypes) {
         age: DataTypes.INTEGER,
         msrp: DataTypes.DECIMAL,
         image: DataTypes.STRING,
-        designer: DataTypes.STRING
+        designer: DataTypes.STRING,
+        email: DataTypes.STRING
     })
     return Collection;
 }
