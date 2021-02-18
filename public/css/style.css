@@ -1,4 +1,3 @@
-
 h2 {
   text-align: center;
 }
@@ -10,16 +9,13 @@ h2 {
 .hide {
   display: none;
 }
+.nextView {
+  transition: transform 0.2s;
+}
 
 .nextView:hover {
   cursor: pointer;
-  position: relative;
-  /* top: -25px;
-  left: -35px; */
-  width: 175px;
-  height: auto;
-  display: block;
-  z-index: 999;
+  transform: scale(1.5);
 }
 .save-btn {
   cursor: pointer;
@@ -51,7 +47,7 @@ h2 {
 }
 .content-table {
   margin: 25px 0;
-  width: 100%; 
+  width: 100%;
   border-bottom: 1px solid lightgrey;
 }
 .content-table tr th {
@@ -77,9 +73,7 @@ h2 {
   margin-left: 25px;
 }
 
-
 html {
-  
   background-color: aqua;
 }
 
@@ -93,19 +87,16 @@ html {
 }
 
 .gamecolumns {
-  margin:auto;
-  width:90%;
+  margin: auto;
+  width: 90%;
 }
 
 #collectionColumn2 {
   margin: auto;
-  width:90%;
-  
+  width: 90%;
 }
 
 #collectionColumn1 {
-  margin:0 auto;
-  width:90%;
- 
+  margin: 0 auto;
+  width: 90%;
 }
-

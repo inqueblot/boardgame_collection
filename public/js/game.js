@@ -12,44 +12,76 @@ $(document).ready(function () {
     url: `https://api.boardgameatlas.com/api/search?ids=${callId}&client_id=${id1}`,
     method: "GET",
   }).then(function (response) {
-    console.log(response)
+    // VALIDATION FOR MISSING KEYS AND VALUES \\
+    let minPlayers = response.games[0].min_players
+      ? response.games[0].min_players
+      : "NA";
+    let maxPlayers = response.games[0].max_players
+      ? response.games[0].max_players
+      : "NA";
+    let playTime = response.games[0].max_playtime
+      ? response.games[0].max_playtime
+      : "NA";
+    let age = response.games[0].min_age ? response.games[0].min_age : "NA";
+    let designer = response.games[0].primary_designer
+      ? response.games[0].primary_designer
+      : "NA";
+    designer = designer.name || "NA";
+    let publisher = response.games[0].primary_publisher
+      ? response.games[0].primary_publisher
+      : "NA";
+    publisher = publisher.name || "NA";
+    let year = response.games[0].year_published
+      ? response.games[0].year_published
+      : "NA";
+
     // SEND RESPONSE TO BUILD DISPLAY TABLE \\
-    buildTable(response);
+    buildTable(
+      response,
+      minPlayers,
+      maxPlayers,
+      playTime,
+      age,
+      designer,
+      publisher,
+      year
+    );
   });
 
   // BUILDING GAME INFO TABLE AND IMAGE \\
-  buildTable = (response) => {
+  buildTable = (
+    response,
+    minPlayers,
+    maxPlayers,
+    playTime,
+    age,
+    designer,
+    publisher,
+    year
+  ) => {
     const {
       name,
-      description,
-      min_players,
-      max_players,
-      max_playtime: playTime,
-      min_age: age,
-      primary_designer,
-      year_published: year,
       msrp,
       id,
       images: { large },
       images: { small },
       url,
-      primary_publisher,
     } = response.games[0];
 
     // SEND RESPONSE TO BUILD OBJECT FOR SAVE \\
     const gameObject = {
       name,
       description,
-      min_players,
-      max_players,
+      minPlayers,
+      maxPlayers,
       playTime,
       age,
-      primary_designer,
+      designer,
       year,
       msrp,
       id,
       images: { small },
-      primary_publisher,
+      publisher,
       url,
     };
 
@@ -63,12 +95,12 @@ $(document).ready(function () {
     $(".new-table").append(tableHeader);
     const tableRow1 = $(`<tr class="table-row"></tr>`);
     const tableData1 = $(`<td class="td-title">Minimum Players</td>`);
-    const tableData2 = $(`<td class="td-body">${min_players || "NA"}</td>`);
+    const tableData2 = $(`<td class="td-body">${minPlayers || "NA"}</td>`);
     $(".new-table").append(tableRow1);
     tableRow1.append(tableData1, tableData2);
     const tableRow2 = $(`<tr class="table-row"></tr>`);
     const tableData1b = $(`<td class="td-title">Maximum Players</td>`);
-    const tableData2b = $(`<td class="td-body">${max_players || "NA"}</td>`);
+    const tableData2b = $(`<td class="td-body">${maxPlayers || "NA"}</td>`);
     $(".new-table").append(tableRow2);
     tableRow2.append(tableData1b, tableData2b);
     const tableRow3 = $(`<tr class="table-row"></tr>`);
@@ -87,7 +119,7 @@ $(document).ready(function () {
     $(".new-table").append(tableRow5);
     const tableRow6 = $(`<tr class="table-row"></tr>`);
     const tableData1f = $(`<td class="td-title">Designer</td>`);
-    const tableData2f = $(`<td class="td-body">${primary_designer.name || "NA"}</td>`);
+    const tableData2f = $(`<td class="td-body">${designer || "NA"}</td>`);
     $(".new-table").append(tableRow6);
     tableRow5.append(tableData1f, tableData2f);
     const tableRow7 = $(`<tr class="table-row"></tr>`);
@@ -118,7 +150,6 @@ $(document).ready(function () {
       type: "POST",
       data: resultOb,
     }).then(function (results) {
-      console.log(results)
       confirmAddModal(results);
     });
   }
