@@ -121,7 +121,7 @@ $(document).ready(function () {
 
   const clearTable = (response) => {
     response.games.length >= 1
-      ? $(".search-table").detach() & responseList(response)
+      ? $("#game-search-result").children().remove() & responseList(response)
       : noResults();
   };
 
@@ -179,6 +179,10 @@ $(document).ready(function () {
         name,
         images: { small },
       };
+
+      function clearResults() {
+        $("#game-search-result").children().remove();
+      }
     }
   };
 
