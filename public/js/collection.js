@@ -19,4 +19,18 @@ $.get("/api/collection", function (data) {
     });
 });
 
+// This function does an API call to delete posts
+  $(document).on("click", ".button", deleteGame);
+
+  // SENDING GAME OBJECT TO DB \\
+  function deleteGame() {
+    var bg_id = $(this).attr("id");
+    console.log(bg_id);
+    $.ajax("/api/collection", {
+      type: "DELETE",
+      data: bg_id,
+    }).then(function (results) {
+      confirmAddModal(results);
+    });
+  }
 

@@ -1,6 +1,7 @@
 var { Collection } = require("../models");
 
 const util = require("util");
+const db = require("../models");
 // Routes
 // =============================================================
 module.exports = function (app) {
@@ -33,6 +34,19 @@ module.exports = function (app) {
             res.json(values.name);
         });
     });
+
+    app.delete("/api/collection", function (req, res) {
+        Collection.destroy({
+            where: {
+                id: req.body.id
+            }
+        }).then(() => res.send("success"))
+    })
+
+
+
+
+
 };
 //     // Write code here to create a new todo and save it to the database
 //     // and then res.json back the new todo to the user
