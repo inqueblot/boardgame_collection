@@ -56,9 +56,9 @@ module.exports = function (app) {
         User.create({
             email: values.email,
             password: values.password
-            
+
         }).then(() => res.send("success"))
-        
+
     });
 
     app.post("/api/login", passport.authenticate("local"), (req, res) => {
@@ -70,7 +70,7 @@ module.exports = function (app) {
       });
 
     app.get("/api/collection/players/:number", function (req, res) {
-        console.log(typeof req.params.number)
+        console.log(req.params.number)
         Collection.findAll({
             where: {
                 minPlayers: {
@@ -86,18 +86,31 @@ module.exports = function (app) {
         })
     });
 
-    // app.get("/api/collection/playtime/:number", function (req, res) {
-    //     Collection.findAll({
-    //         where: {
-    //             playTime: {
-    //                 [Op.lte]: req.params.number
-    //             }
-    //         }
-    //     }).then(function (results) {
-    //         console.log(results)
-    //         res.json(results)
-    //     })
-    // });
+    app.get("/api/collection/time/:number", function (req, res) {
+        console.log(req.params.number)
+        Collection.findAll({
+            where: {
+                playTime: {
+                    [Op.lte]: req.params.number
+                }
+            }
+        }).then(function (results) {
+
+            res.json(results)
+        })
+    });
+
+    app.get("/api/collection/designer/:designer", function (req, res) {
+        console.log(req.params.designer)
+        Collection.findAll({
+            where: {
+                designer: req.params.designer
+            }
+        }).then(function (results) {
+
+            res.json(results)
+        })
+    });
 
 };
 
