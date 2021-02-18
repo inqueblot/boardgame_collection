@@ -5,6 +5,7 @@ const passport = require("../config/passport");
 const { Op } = require("sequelize");
 const util = require("util");
 const db = require("../models");
+const isAuthenticated = require("../config/middleware/isAuthenticated");
 // Routes
 // =============================================================
 module.exports = function (app) {
@@ -32,38 +33,40 @@ module.exports = function (app) {
       msrp: values.msrp,
       image: values.images.small,
       designer: values.designer,
-    })
-      .then(function (results) {
-        res.json(values.name);
-      })
-      .catch(function (err) {
-        console.error(err);
-        res.send(err);
+    });
+
+    app.post("/api/signup/", function (req, res) {
+      let values = req.body;
+      console.log(req.body);
+      User.create({
+        email: values.email,
+        password: values.password,
+      }).then(() => res.send("success"));
+    });
+
+    app.post("/api/login", passport.authenticate("local"), (req, res) => {
+      // Sending back a password, even a hashed password, isn't a good idea
+      res.json({
+        email: req.user.email,
+        id: req.user.id,
       });
-  });
+    });
 
-  app.delete("/api/collection/:id", function (req, res) {
-    Collection.destroy({
-      where: {
-        bg_id: req.params.id,
-      },
-    }).then(() => res.send("success"));
-  });
-
-  app.post("/api/signup/", function (req, res) {
-    let values = req.body;
-    console.log(req.body);
-    User.create({
-      email: values.email,
-      password: values.password,
-    }).then(() => res.send("success"));
-  });
-
-  app.post("/api/login", passport.authenticate("local"), (req, res) => {
-    // Sending back a password, even a hashed password, isn't a good idea
-    res.json({
-      email: req.user.email,
-      id: req.user.id,
+    app.get("/api/collection/players/:number", function (req, res) {
+      console.log(req.params.number);
+      Collection.findAll({
+        where: {
+          minPlayers: {
+            [Op.lte]: req.params.number,
+          },
+          maxPlayers: {
+            [Op.gte]: req.params.number,
+          },
+        },
+      }).then(function (results) {
+        // console.log(results)
+        res.json(results);
+      });
     });
   });
 
