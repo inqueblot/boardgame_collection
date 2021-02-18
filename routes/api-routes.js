@@ -28,7 +28,6 @@ module.exports = function (app) {
       msrp: values.msrp,
       image: values.images.small,
       designer: values.designer,
-      description: values.description,
     }).then(function (results) {
       res.json(values.name);
     });
