@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-$(".signUp").on("click", "#sign-up", createUser);
+$(document).on("click", "#sign-up", createUser);
 
 function createUser(event) {
     event.preventDefault();
@@ -8,18 +8,16 @@ function createUser(event) {
       email: $("#email").val().trim(),
       password: $("#pswrd").val().trim()
     };
-
-   $.ajax("api/users/", {
+    $.ajax("api/signup/", {
       type: "POST",
       data: user,
     }).then(function () {
         console.log(user);
-        window.location.replace("/");
     })
-    .catch(console.log("error"))
     
   }
 
   
 
 })
+
