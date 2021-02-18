@@ -77,7 +77,7 @@ $(document).ready(function () {
   };
 
 
-   
+
 
   // SEARCH GAME NAME INPUT AND SUBMIT BUTTON \\
   $("#search").on("click", function (event) {
@@ -150,48 +150,35 @@ $(document).ready(function () {
 
       // BUILD SEARCH RESPONSE TABLES FOR SEARCHED GAMES \\
 
-//       let col = $("<div class='column'>")
-//       let nametag = $("<strong>");
-//       let image = $("<img>")
-//       let cardColor = $("<div class='card cardcolor'>");
-//       let cardContent = $("<div class='card-content'>");
-//       let content = $("<div class='content has-text-centered'>")
+      let col = $("<div class='column'>")
+      let nametag = $("<strong>");
+      let image = $("<img>")
+      let cardColor = $("<div class='card cardcolor'>");
+      let cardContent = $("<div class='card-content'>");
+      let content = $("<div class='content has-text-centered'>")
 
 
 
-//       nametag.text(name);
-//       image.attr("src", `${small}`)
-//       image.attr("value", `${id}`)
-//       image.addClass("nextView")
-//       col.append(cardColor);
-//       cardColor.append(cardContent);
-//       cardContent.append(content);
-//       content.append(nametag);
-//       content.append("<br>");
-//       content.append("<br>");
-//       content.append(image);
+      nametag.text(name);
+      image.attr("src", `${small}`)
+      image.attr("value", `${id}`)
+      image.addClass("nextView")
+      col.append(cardColor);
+      cardColor.append(cardContent);
+      cardContent.append(content);
+      content.append(nametag);
+      content.append("<br>");
+      content.append("<br>");
+      content.append(image);
 
-//       mainColumn.append(col);
-//       gameinfo.append(mainColumn)
+      mainColumn.append(col);
+      gameinfo.append(mainColumn)
 
-//       const gameObject = {
-//         id,
-//         name,
-//         images: { small },
-//       };
-//       // PUSH GAMEOBJECT TO EMPTY ARRAY AFTER EACH SEARCH \\
-//       searchArr.push(gameObject);
-//       // console.log(searchArr);
-
-      const beginTable = $('<table class="search-table" >');
-      $("#game-search-result").append(beginTable);
-      let newHeaderRow = $("<tr>");
-      let headerData = $("<th>");
-      headerData.text(name);
-      beginTable.append(newHeaderRow);
-      newHeaderRow.append(headerData);
-      beginTable.append(`<img class="nextView" value=${id} src='${small}' />`);
-      beginTable.append("</table>");
+      const gameObject = {
+        id,
+        name,
+        images: { small },
+      };
     }
   };
 
