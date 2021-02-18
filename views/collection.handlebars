@@ -16,7 +16,8 @@
                 <div class="field">
                     <label class="label">Playtime(in minutes)</label>
                     <div class="control">
-                        <input id="playTime" class="input" type="text" placeholder="Playtime">
+                        <input id="playTime-text" class="input" type="text" placeholder="Playtime">
+                        <input class="button is-primary" type="submit" id="playTime-submit">
                     </div>
                 </div>
                 <div class="field">
@@ -40,50 +41,50 @@
 
 
 
-  {{!-- <div class="column">
-    <div class="box" id="collectionColumn2">
-      <table id="table_results" class="new table content-table">
-        <tr>
-          <th>Name</th>
-          <th>minPlayers</th>
-          <th>maxPlayers</th>
-          <th>Playtime</th>
-          <th>Year Published</th>
-          <th>Publisher</th>
-          <th>Rec Age</th>
-          <th>msrp</th>
-          <th>Designer</th>
-          <th>delete</th>
-        </tr>
-      </table> --}}
-    <div class="column">
-        {{!-- <input id="player-slider" class="slider has-output-tooltip is-fullwidth" step="1" min="0" max="100"
-            value="50" type="range">
-        <output id="player-output">50</output> --}}
+    {{!-- <div class="column">
         <div class="box" id="collectionColumn2">
-            <table id="table_head" class="new table content-table">
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>minPlayers</th>
-                        <th>maxPlayers</th>
-                        <th>Playtime</th>
-                        <th>Year Published</th>
-                        <th>Publisher</th>
-                        <th>Rec Age</th>
-                        <th>msrp</th>
-                        <th>Designer</th>
-                        <th>delete</th>
-                    </tr>
-                </thead>
-                <tbody id="table_results">
+            <table id="table_results" class="new table content-table">
+                <tr>
+                    <th>Name</th>
+                    <th>minPlayers</th>
+                    <th>maxPlayers</th>
+                    <th>Playtime</th>
+                    <th>Year Published</th>
+                    <th>Publisher</th>
+                    <th>Rec Age</th>
+                    <th>msrp</th>
+                    <th>Designer</th>
+                    <th>delete</th>
+                </tr>
+            </table> --}}
+            <div class="column">
+                {{!-- <input id="player-slider" class="slider has-output-tooltip is-fullwidth" step="1" min="0"
+                    max="100" value="50" type="range">
+                <output id="player-output">50</output> --}}
+                <div class="box" id="collectionColumn2">
+                    <table id="table_head" class="new table content-table">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>minPlayers</th>
+                                <th>maxPlayers</th>
+                                <th>Playtime</th>
+                                <th>Year Published</th>
+                                <th>Publisher</th>
+                                <th>Rec Age</th>
+                                <th>msrp</th>
+                                <th>Designer</th>
+                                <th>delete</th>
+                            </tr>
+                        </thead>
+                        <tbody id="table_results">
 
-                </tbody>
-            </table>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
-</div>
-</div>
 </div>
 
 <body>
