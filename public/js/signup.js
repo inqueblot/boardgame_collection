@@ -8,7 +8,7 @@ function createUser(event) {
       email: $("#email").val().trim(),
       password: $("#pswrd").val().trim()
     };
-    $.ajax("api/users", {
+    $.ajax("api/signup/", {
       type: "POST",
       data: user,
     }).then(function () {

@@ -1,13 +1,16 @@
+
 var express = require("express");
-var { sequelize } = require("./models");
+var session = require("express-session");
 var exphbs = require('express-handlebars');
+var passport = require("passport")
 
 // Sets up the Express App
 // =============================================================
-var app = express();
 var PORT = process.env.PORT || 8080;
+var { sequelize } = require("./models");
 
 // Sets up the Express app to handle data parsing
+var app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
@@ -15,7 +18,11 @@ app.use(express.json());
 app.use(express.static("public"));
 app.engine('handlebars', exphbs());
 app.set('view engine', 'handlebars');
-
+app.use(
+    session({ secret: "keyboard cat", resave: true, saveUninitialized: true })
+  );
+app.use(passport.initialize());
+app.use(passport.session());
 // Routes
 // =============================================================
 require("./routes/api-routes.js")(app);

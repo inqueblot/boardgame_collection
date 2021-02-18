@@ -1,5 +1,6 @@
 var { Collection } = require("../models");
-var { Users } = require("../models");
+var { User } = require("../models");
+const passport = require("../config/passport");
 
 const { Op } = require("sequelize");
 const util = require("util");
@@ -49,10 +50,10 @@ module.exports = function (app) {
     })
 
 
-    app.post("/api/users/", function (req, res) {
+    app.post("/api/signup/", function (req, res) {
         let values = req.body;
         console.log(req.body);
-        Users.create({
+        User.create({
             email: values.email,
             password: values.password
 
@@ -60,6 +61,13 @@ module.exports = function (app) {
 
     });
 
+    app.post("/api/login", passport.authenticate("local"), (req, res) => {
+        // Sending back a password, even a hashed password, isn't a good idea
+        res.json({
+          email: req.user.email,
+          id: req.user.id
+        });
+      });
 
     app.get("/api/collection/players/:number", function (req, res) {
         console.log(req.params.number)
