@@ -1,4 +1,4 @@
-h1,
+
 h2 {
   text-align: center;
 }
@@ -25,17 +25,33 @@ h2 {
   cursor: pointer;
 }
 #box {
-  /* background-color: rgba(9, 241, 9, 0.308); */
-  background-color: #48c78e;
   text-align: center;
   justify-content: center;
   align-items: center;
-  border: solid rgb(37, 172, 37);
+  border: solid white;
   color: white;
+}
+#box-game {
+  background-color: #48c78e;
+}
+#box-index {
+  background-color: #ff7878;
+  display: flex;
+  text-align: center;
+}
+/* save confirmation on games  */
+.modal-message {
+  text-align: center;
+}
+/* err alert on index  */
+.modal-alert {
+  text-align: center;
+  margin-left: auto;
+  margin-right: ;
 }
 .content-table {
   margin: 25px 0;
-  min-width: 500px;
+  width: 100%; 
   border-bottom: 1px solid lightgrey;
 }
 .content-table tr th {
@@ -55,15 +71,15 @@ h2 {
 .td-title {
   font-weight: bold;
 }
-.tr:last-of-type {
-  border-bottom: 2px solid #00d1b2;
-}
 .buttons-pic {
   display: flex;
   justify-content: space-evenly;
   margin-left: 25px;
 }
-body {
+
+
+html {
+  
   background-color: aqua;
 }
 
@@ -75,3 +91,21 @@ body {
   border-width: 2px;
   height: 250px;
 }
+
+.gamecolumns {
+  margin:auto;
+  width:90%;
+}
+
+#collectionColumn2 {
+  margin: auto;
+  width:90%;
+  
+}
+
+#collectionColumn1 {
+  margin:0 auto;
+  width:90%;
+ 
+}
+
