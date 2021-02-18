@@ -63,14 +63,11 @@ h2 {
   justify-content: space-evenly;
   margin-left: 25px;
 }
-body {
-  background-color: aqua;
-  height:100%;
 
-}
 
 html {
-  height:100%
+  
+  background-color: aqua;
 }
 
 .cardcolor {
@@ -83,8 +80,8 @@ html {
 }
 
 .gamecolumns {
-  height:75%;
-  width:75%;
+  margin:auto;
+  width:90%;
 }
 
 #collectionColumn2 {
