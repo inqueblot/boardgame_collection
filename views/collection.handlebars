@@ -2,58 +2,64 @@
 <br>
 <br>
 <div class="columns is-desktop ">
-  <div class="column is-one-third-desktop">
-    <div class="box" id="collectionColumn1">
-      <article class="panel is-primary">
-        <p class="panel-heading">
-          Browse Your Collection
-        </p>
-        <div class="panel-block">
-          <p>
-            Filter By:
-          </p>
+    <div class="column is-one-third-desktop">
+        <div class="box" id="collectionColumn1">
+            <article class="panel is-primary">
+                <p class="panel-heading">
+                    Browse Your Collection
+                </p>
+                <div class="panel-block">
+                    <p>
+                        Filter By:
+                    </p>
+                </div>
+                <a class="panel-block is-active" id="playtime">
+                    Playtime
+                </a>
+                <a class="panel-block" id="numPlay">
+                    Number of Players
+                </a>
+                <a class="panel-block" id="age">
+                    Designer
+                </a>
+                <a class="panel-block">
+                    jgthms.github.io
+                </a>
+            </article>
         </div>
-        <a class="panel-block is-active" id="playtime">
-          Playtime
-        </a>
-        <a class="panel-block" id="numPlay">
-          Number of Players
-        </a>
-        <a class="panel-block" id="age">
-          Age
-        </a>
-        <a class="panel-block">
-          jgthms.github.io
-        </a>
-      </article>
     </div>
-  </div>
 
 
 
     <div class="column">
+        {{!-- <input id="player-slider" class="slider has-output-tooltip is-fullwidth" step="1" min="0" max="100"
+            value="50" type="range">
+        <output id="player-output">50</output> --}}
         <div class="box" id="collectionColumn2">
-            <table id="table_results" class="new table content-table">
+            <table id="table_head" class="new table content-table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>minPlayers</th>
+                        <th>maxPlayers</th>
+                        <th>Playtime</th>
+                        <th>Year Published</th>
+                        <th>Publisher</th>
+                        <th>Rec Age</th>
+                        <th>msrp</th>
+                        <th>Designer</th>
+                        <th>delete</th>
+                    </tr>
+                </thead>
+                <tbody id="table_results">
 
-                <tr>
-                    <th>Name</th>
-                    <th>minPlayers</th>
-                    <th>maxPlayers</th>
-                    <th>Playtime</th>
-                    <th>Year Published</th>
-                    <th>Publisher</th>
-                    <th>Rec Age</th>
-                    <th>msrp</th>
-                    <th>Designer</th>
-                    <th>delete</th>
-                </tr>
-
+                </tbody>
             </table>
         </div>
     </div>
-  </div>
+</div>
 </div>
 
 <body>
-  <script src="/js/collection.js"></script>
+    <script src="/js/collection.js"></script>
 </body>
