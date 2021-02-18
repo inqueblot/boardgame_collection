@@ -50,7 +50,7 @@ module.exports = function (app) {
         console.log(req.body);
         Users.create({
             email: values.email,
-            name: values.name
+            password: values.password
             
         }).then(() => res.send("success"))
         
