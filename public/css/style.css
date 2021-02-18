@@ -65,7 +65,12 @@ h2 {
 }
 body {
   background-color: aqua;
+  height:100%;
 
+}
+
+html {
+  height:100%
 }
 
 .cardcolor {
@@ -81,3 +86,15 @@ body {
   height:75%;
   width:75%;
 }
+
+#collectionColumn2 {
+  margin: auto;
+  height: 75%;
+  width:75%;
+}
+
+#collectionColumn1 {
+  margin-left: 20px ;
+ 
+}
+
