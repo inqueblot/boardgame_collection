@@ -39,6 +39,7 @@ module.exports = function (app) {
 
 
     app.get("/api/collection/players/:number", function (req, res) {
+        console.log(typeof req.params.number)
         Collection.findAll({
             where: {
                 minPlayers: {
@@ -49,23 +50,23 @@ module.exports = function (app) {
                 }
             }
         }).then(function (results) {
-            console.log(results)
+            // console.log(results)
             res.json(results)
         })
     });
 
-    app.get("/api/collection/playtime/:number", function (req, res) {
-        Collection.findAll({
-            where: {
-                playTime: {
-                    [Op.lte]: req.params.number
-                }
-            }
-        }).then(function (results) {
-            console.log(results)
-            res.json(results)
-        })
-    });
+    // app.get("/api/collection/playtime/:number", function (req, res) {
+    //     Collection.findAll({
+    //         where: {
+    //             playTime: {
+    //                 [Op.lte]: req.params.number
+    //             }
+    //         }
+    //     }).then(function (results) {
+    //         console.log(results)
+    //         res.json(results)
+    //     })
+    // });
 
 };
 //     // Write code here to create a new todo and save it to the database
