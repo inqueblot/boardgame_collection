@@ -22,13 +22,13 @@ module.exports = function (app) {
             bg_id: values.id,
             minPlayers: values.min_players,
             maxPlayers: values.max_players,
-            playTime: values.max_playtime,
+            playTime: values.playTime,
             yearPub: values.year,
-            publisher: values.publisher,
+            publisher: values.primary_publisher.name,
             age: values.age,
             msrp: values.msrp,
             image: values.images.small,
-            designer: values.designer,
+            designer: values.primary_designer.name,
         }).then(function (results) {
             res.json(values.name);
         });

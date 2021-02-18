@@ -3,10 +3,10 @@
 $(document).ready(function () {
 
   $.ajax({
-    url: "https://api.boardgameatlas.com/api/search?order_by=popularity&ascending=false&client_id=JLBr5npPhV",
+    url: "https://api.boardgameatlas.com/api/search?limit=5&client_id=JLBr5npPhV",
     method: "GET",
   }).then(function (response) {
-    console.log(response);
+
     // clearResults()
     suggestionList(response);
     $(".nextView").click(function (event) {
@@ -18,23 +18,9 @@ $(document).ready(function () {
   const suggestionList = (response) => {
     let suggestions = $("#suggestions");
     let mainColumn = $("<div class='columns'>");
-    // let title = $("<p>");
-
-    // title.text("Search results")
-    // suggestions.append(title);
-    // suggestions.append("<br>")
-
     for (let i = 0; i < 5; i++) {
       const {
         name,
-        min_players,
-        max_players,
-        max_playtime: playTime,
-        min_age: age,
-        primary_designer: { name: designer },
-        publisher,
-        year_published: year,
-        msrp,
         id,
         images: { small },
       } = response.games[i];
@@ -67,18 +53,10 @@ $(document).ready(function () {
       const gameObject = {
         id,
         name,
-        min_players,
-        max_players,
-        playTime,
-        age,
-        publisher,
-        designer,
-        year,
-        msrp,
         images: { small },
       };
       // PUSH GAMEOBJECT TO EMPTY ARRAY AFTER EACH SEARCH \\
-      searchArr.push(gameObject);
+      // searchArr.push(gameObject);
       // console.log(searchArr);
     }
   };
@@ -149,14 +127,6 @@ $(document).ready(function () {
     for (let i = 0; i < response.games.length; i++) {
       const {
         name,
-        min_players,
-        max_players,
-        max_playtime: playTime,
-        min_age: age,
-        primary_designer: { name: designer },
-        publisher,
-        year_published: year,
-        msrp,
         id,
         images: { small },
       } = response.games[i];
@@ -190,14 +160,6 @@ $(document).ready(function () {
       const gameObject = {
         id,
         name,
-        min_players,
-        max_players,
-        playTime,
-        age,
-        publisher,
-        designer,
-        year,
-        msrp,
         images: { small },
       };
       // PUSH GAMEOBJECT TO EMPTY ARRAY AFTER EACH SEARCH \\
