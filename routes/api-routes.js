@@ -35,10 +35,10 @@ module.exports = function (app) {
         });
     });
 
-    app.delete("/api/collection", function (req, res) {
+    app.delete("/api/collection/:id", function (req, res) {
         Collection.destroy({
             where: {
-                id: req.body.id
+                bg_id: req.params.id
             }
         }).then(() => res.send("success"))
     })

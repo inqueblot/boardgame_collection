@@ -26,11 +26,25 @@ $.get("/api/collection", function (data) {
   function deleteGame() {
     var bg_id = $(this).attr("id");
     console.log(bg_id);
-    $.ajax("/api/collection", {
+    $.ajax("/api/collection/" + bg_id, {
       type: "DELETE",
-      data: bg_id,
-    }).then(function (results) {
-      confirmAddModal(results);
+    }).then(() =>{
+      console.log("success");
+      location.reload()
     });
   }
 
+//   $(".delquote").on("click", function(event) {
+//     var id = $(this).data("id");
+
+//     // Send the DELETE request.
+//     $.ajax("/api/quotes/" + id, {
+//       type: "DELETE"
+//     }).then(
+//       function() {
+//         console.log("deleted id ", id);
+//         // Reload the page to get the updated list
+//         location.reload();
+//       }
+//     );
+//   });
