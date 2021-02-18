@@ -118,20 +118,33 @@ $(document).ready(function () {
       type: "POST",
       data: resultOb,
     }).then(function (results) {
+      console.log(results)
       confirmAddModal(results);
     });
   }
 
   // CONFIRMATION MODAL THAT GAME WAS ADDED TO COLLECTION \\
   confirmAddModal = (results) => {
-    const nameGameCon = $(
-      `<h4 style="color:white;">You have added "${results}" to your collection</h4>`
-    );
-    $("#modal-result").append(nameGameCon);
-    $("#modal-act").addClass("is-active");
-    setTimeout(function () {
-      $("#modal-act").removeClass("is-active");
-      $(nameGameCon).detach();
-    }, 3000);
+    if (results.name !== "SequelizeUniqueConstraintError") {
+      const nameGameCon = $(
+        `<h4 style="color:white;">You have added "${results}" to your collection</h4>`
+      );
+      $("#modal-result").append(nameGameCon);
+      $("#modal-act").addClass("is-active");
+      setTimeout(function () {
+        $("#modal-act").removeClass("is-active");
+        $(nameGameCon).detach();
+      }, 3000);
+    } else {
+      const nameGameCon = $(
+        `<h4 style="color:white;">You have already added this game to your collection</h4>`
+      );
+      $("#modal-result").append(nameGameCon);
+      $("#modal-act").addClass("is-active");
+      setTimeout(function () {
+        $("#modal-act").removeClass("is-active");
+        $(nameGameCon).detach();
+      }, 3000);
+    }
   };
 });

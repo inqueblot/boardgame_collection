@@ -1,5 +1,5 @@
 var { Collection } = require("../models");
-
+const { Op } = require("sequelize");
 const util = require("util");
 // Routes
 // =============================================================
@@ -31,8 +31,43 @@ module.exports = function (app) {
             designer: values.primary_designer.name,
         }).then(function (results) {
             res.json(values.name);
+        }).catch(function (err) {
+            console.error(err);
+            res.send(err)
         });
     });
+
+
+    app.get("/api/collection/players/:number", function (req, res) {
+        console.log(typeof req.params.number)
+        Collection.findAll({
+            where: {
+                minPlayers: {
+                    [Op.lte]: req.params.number
+                },
+                maxPlayers: {
+                    [Op.gte]: req.params.number
+                }
+            }
+        }).then(function (results) {
+            // console.log(results)
+            res.json(results)
+        })
+    });
+
+    // app.get("/api/collection/playtime/:number", function (req, res) {
+    //     Collection.findAll({
+    //         where: {
+    //             playTime: {
+    //                 [Op.lte]: req.params.number
+    //             }
+    //         }
+    //     }).then(function (results) {
+    //         console.log(results)
+    //         res.json(results)
+    //     })
+    // });
+
 };
 //     // Write code here to create a new todo and save it to the database
 //     // and then res.json back the new todo to the user

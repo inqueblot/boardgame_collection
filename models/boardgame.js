@@ -3,6 +3,7 @@ module.exports = function (sequelize, DataTypes) {
         name: DataTypes.STRING,
         bg_id: {
             type: DataTypes.STRING,
+            unique: true
         },
         minPlayers: DataTypes.INTEGER,
         maxPlayers: DataTypes.INTEGER,
@@ -13,6 +14,6 @@ module.exports = function (sequelize, DataTypes) {
         msrp: DataTypes.DECIMAL,
         image: DataTypes.STRING,
         designer: DataTypes.STRING
-    });
+    })
     return Collection;
 }
