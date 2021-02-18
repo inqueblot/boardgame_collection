@@ -14,4 +14,8 @@ module.exports = function (app, express) {
     app.get("/collection", (req, res) => {
         res.render("collection")
     })
+
+    app.get("/users", (req, res) => {
+        res.render("users")
+    })
 } 
