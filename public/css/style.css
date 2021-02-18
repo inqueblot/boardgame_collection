@@ -1,4 +1,4 @@
-h1,
+
 h2 {
   text-align: center;
 }
@@ -51,7 +51,7 @@ h2 {
 }
 .content-table {
   margin: 25px 0;
-  min-width: 500px;
+  width: 100%; 
   border-bottom: 1px solid lightgrey;
 }
 .content-table tr th {
@@ -76,7 +76,10 @@ h2 {
   justify-content: space-evenly;
   margin-left: 25px;
 }
-body {
+
+
+html {
+  
   background-color: aqua;
 }
 
@@ -88,3 +91,21 @@ body {
   border-width: 2px;
   height: 250px;
 }
+
+.gamecolumns {
+  margin:auto;
+  width:90%;
+}
+
+#collectionColumn2 {
+  margin: auto;
+  width:90%;
+  
+}
+
+#collectionColumn1 {
+  margin:0 auto;
+  width:90%;
+ 
+}
+

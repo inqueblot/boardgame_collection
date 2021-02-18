@@ -1,38 +1,38 @@
 <h1 class="is-size-2">Welcome to Your Collection!</h1>
 <br>
 <br>
-<div class="columns">
-    <div class="column is-one-quarter">
-        <div class="box">
-            <article class="panel is-primary">
-                <p class="panel-heading">
-                    Browse Your Collection
-                </p>
-                <div class="panel-block">
-                    <p>
-                        Filter By:
-                    </p>
-                </div>
-                <a class="panel-block is-active" id="playtime">
-                    Playtime
-                </a>
-                <a class="panel-block" id="numPlay">
-                    Number of Players
-                </a>
-                <a class="panel-block" id="age">
-                    Age
-                </a>
-                <a class="panel-block">
-                    jgthms.github.io
-                </a>
-            </article>
+<div class="columns is-desktop ">
+  <div class="column is-one-third-desktop">
+    <div class="box" id="collectionColumn1">
+      <article class="panel is-primary">
+        <p class="panel-heading">
+          Browse Your Collection
+        </p>
+        <div class="panel-block">
+          <p>
+            Filter By:
+          </p>
         </div>
+        <a class="panel-block is-active" id="playtime">
+          Playtime
+        </a>
+        <a class="panel-block" id="numPlay">
+          Number of Players
+        </a>
+        <a class="panel-block" id="age">
+          Age
+        </a>
+        <a class="panel-block">
+          jgthms.github.io
+        </a>
+      </article>
     </div>
+  </div>
 
 
 
     <div class="column">
-        <div class="box">
+        <div class="box" id="collectionColumn2">
             <table id="table_results" class="new table content-table">
 
                 <tr>
@@ -51,8 +51,9 @@
             </table>
         </div>
     </div>
+  </div>
 </div>
 
 <body>
-    <script src="/js/collection.js"></script>
+  <script src="/js/collection.js"></script>
 </body>
