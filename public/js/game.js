@@ -12,6 +12,7 @@ $(document).ready(function () {
     url: `https://api.boardgameatlas.com/api/search?ids=${callId}&client_id=${id1}`,
     method: "GET",
   }).then(function (response) {
+    console.log(response)
     // SEND RESPONSE TO BUILD DISPLAY TABLE \\
     buildTable(response);
   });
@@ -25,13 +26,14 @@ $(document).ready(function () {
       max_players,
       max_playtime: playTime,
       min_age: age,
-      primary_designer: { name: designer },
+      primary_designer,
       year_published: year,
       msrp,
       id,
       images: { large },
       images: { small },
       url,
+      primary_publisher,
     } = response.games[0];
 
     // SEND RESPONSE TO BUILD OBJECT FOR SAVE \\
@@ -42,11 +44,12 @@ $(document).ready(function () {
       max_players,
       playTime,
       age,
-      primary_designer: { name: designer },
+      primary_designer,
       year,
       msrp,
       id,
       images: { small },
+      primary_publisher,
       url,
     };
 
@@ -84,7 +87,7 @@ $(document).ready(function () {
     $(".new-table").append(tableRow5);
     const tableRow6 = $(`<tr class="table-row"></tr>`);
     const tableData1f = $(`<td class="td-title">Designer</td>`);
-    const tableData2f = $(`<td class="td-body">${designer || "NA"}</td>`);
+    const tableData2f = $(`<td class="td-body">${primary_designer.name || "NA"}</td>`);
     $(".new-table").append(tableRow6);
     tableRow5.append(tableData1f, tableData2f);
     const tableRow7 = $(`<tr class="table-row"></tr>`);
