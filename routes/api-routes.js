@@ -13,7 +13,11 @@ module.exports = function (app) {
     app.get("/api/collection", function (req, res) {
         // Write code here to retrieve all of the todos from the database and res.json them
         // back to the user
-        Collection.findAll({}).then(function (results) {
+        Collection.findAll({
+            where: {
+                email: req.user.email
+            }
+        }).then(function (results) {
             res.json(results)
 
         });
@@ -34,6 +38,7 @@ module.exports = function (app) {
             msrp: values.msrp,
             image: values.images.small,
             designer: values.primary_designer.name,
+            email: req.user.email
         }).then(function (results) {
             res.json(values.name);
         }).catch(function (err) {
