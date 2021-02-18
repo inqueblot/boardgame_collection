@@ -1,5 +1,5 @@
 var { Collection } = require("../models");
-var { Users } = require("../models");
+var { User } = require("../models");
 
 const { Op } = require("sequelize");
 const util = require("util");
@@ -52,7 +52,7 @@ module.exports = function (app) {
     app.post("/api/users/", function (req, res) {
         let values = req.body;
         console.log(req.body);
-        Users.create({
+        User.create({
             email: values.email,
             password: values.password
             
