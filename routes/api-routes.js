@@ -92,6 +92,18 @@ module.exports = function (app) {
         })
     });
 
+    app.get("/api/collection/designer/:designer", function (req, res) {
+        console.log(req.params.designer)
+        Collection.findAll({
+            where: {
+                designer: req.params.designer
+            }
+        }).then(function (results) {
+
+            res.json(results)
+        })
+    });
+
 };
 
 
