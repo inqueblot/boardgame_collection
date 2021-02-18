@@ -1,4 +1,5 @@
 var { Collection } = require("../models");
+var { Users } = require("../models");
 
 const util = require("util");
 const db = require("../models");
@@ -44,7 +45,16 @@ module.exports = function (app) {
     })
 
 
-
+    app.post("/api/users/", function (req, res) {
+        let values = req.body;
+        console.log(req.body);
+        Users.create({
+            email: values.email,
+            name: values.name
+            
+        }).then(() => res.send("success"))
+        
+    });
 
 
 };
