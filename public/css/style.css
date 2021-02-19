@@ -10,16 +10,13 @@ h2 {
 .hide {
   display: none;
 }
-
+.nextView {
+  transition: transform .2s;
+}
 .nextView:hover {
   cursor: pointer;
-  position: relative;
-  /* top: -25px;
-  left: -35px; */
-  width: 175px;
-  height: auto;
-  display: block;
-  z-index: 999;
+  transform: scale(1.5);
+ 
 }
 .save-btn {
   cursor: pointer;
@@ -34,20 +31,26 @@ h2 {
 #box-game {
   background-color: #48c78e;
 }
-#box-index {
-  background-color: #ff7878;
+.modal-content {
+  
   display: flex;
   text-align: center;
+  
 }
-/* save confirmation on games  */
-.modal-message {
-  text-align: center;
+
+.bg-r {
+  background-color: #ff7878;
 }
-/* err alert on index  */
+
+#modal-result {
+  width:100%;
+  padding:5px;
+  margin:0;
+}
+
 .modal-alert {
   text-align: center;
-  margin-left: auto;
-  margin-right: auto;
+
 }
 .content-table {
   margin: 25px 0;
@@ -57,8 +60,9 @@ h2 {
 .content-table tr th {
   background-color: #00d1b2;
   width: 100%;
-  color: white;
+  color: black;
   padding: 15px;
+  text-align: center;
 }
 .td-title,
 .td-body {
@@ -106,6 +110,35 @@ html {
 #collectionColumn1 {
   margin:0 auto;
   width:90%;
+  height: 500px;
  
 }
+
+td {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow:ellipsis;
+  width:90%;
+}
+
+#table_head {
+  table-layout:fixed;
+  width:100%;
+}
+
+.text {
+  text-align: center;
+}
+
+#loginEmail {
+  margin-right: 50px ;
+  font-size: medium;
+  color:blue;
+}
+
+#home {
+  margin-left: 10px ;
+}
+
+
 

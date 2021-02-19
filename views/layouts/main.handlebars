@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
     <link rel="stylesheet" href="/css/style.css" type="text/css" />
-    <title>Board Games!</title>
+    <title>Games[i]</title>
     <script src="https://code.jquery.com/jquery-3.5.1.js"
         integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 
@@ -21,22 +21,25 @@
 
     <div id="navbarBasicExample" class="navbar-menu ">
         <div class="navbar-start">
-            <a id="home" class="navbar-item">
+            <div class="buttons">
+            <a id="home" class="button is-primary">
                 Home
             </a>
-            <a id="collection" class="navbar-item">
-                Collection
+            <a id="collection" class="button is-primary">
+               Collection
             </a>
+            </div>
         </div>
 
         <div class="navbar-end">
             <div class="navbar-item">
-                <div id="loginEmail">{{email}}</div>
+                <div id="loginEmail">Logged in as {{email}}</div>
+                
                 <div class="buttons">
-                    <a id="login" class="button is-light">
+                    <a id="login" class="button is-primary">
                         Log in
                     </a>
-                    <a id="logout" class="button is-light">
+                    <a id="logout" class="button is-primary">
                         Log out
                     </a>
                 </div>
