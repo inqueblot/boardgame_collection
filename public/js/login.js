@@ -13,10 +13,10 @@ $(document).ready(function() {
           data: user,
         }).then(function () {
             window.location.replace("/");
-            console.log(user);
+           
         })
         .catch(err => {
-            console.log(err);
+           
         });
         
       }

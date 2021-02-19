@@ -12,7 +12,7 @@ function createUser(event) {
       type: "POST",
       data: user,
     }).then(function () {
-        console.log(user);
+       
     })
     
   }

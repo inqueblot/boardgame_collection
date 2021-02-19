@@ -12,7 +12,7 @@ $(document).ready(function () {
     url: `https://api.boardgameatlas.com/api/search?ids=${callId}&client_id=${id1}`,
     method: "GET",
   }).then(function (response) {
-    console.log(response)
+    
     // SEND RESPONSE TO BUILD DISPLAY TABLE \\
     buildTable(response);
   });
@@ -118,7 +118,7 @@ $(document).ready(function () {
       type: "POST",
       data: resultOb,
     }).then(function (results) {
-      console.log(results)
+      
       confirmAddModal(results);
     });
   }

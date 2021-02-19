@@ -22,11 +22,11 @@ $(document).on("click", ".del", deleteGame);
 
 function deleteGame() {
     var bg_id = $(this).attr("id");
-    console.log(bg_id);
+    
     $.ajax("/api/collection/" + bg_id, {
         type: "DELETE",
     }).then(() => {
-        console.log("success");
+        
         location.reload()
     });
 }
@@ -57,7 +57,7 @@ $("#playTime-submit").on("click", function (event) {
 $("#numPlay-submit").on("click", function (event) {
     event.preventDefault();
     let count = document.querySelector("#numPlay-text").value
-    // console.log("hello world")
+    
     $.get(`/api/collection/players/${count}`, function (data) {
         $("#table_results").children().remove()
         data.forEach(element => {

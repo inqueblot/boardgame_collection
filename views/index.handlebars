@@ -9,6 +9,7 @@
 </head>
 
 <body>
+  <br>
   <div class="box has-text-centered">
     <img src="https://www.dietsinreview.com/diet_column/wp-content/uploads/2014/01/dice-e1390265093443.jpg" height="10%"
       width="10%">
@@ -23,29 +24,29 @@
   <div class="content has-text-centered" id="suggestions">
     <p><strong>Checkout these popular games!</strong></p>
     <br>
-   {{!-- suggested games auto generate --}}
+    {{!-- suggested games auto generate --}}
   </div>
 
   <div id="game-search-result" class="content has-text-centered">
-   {{!--search results --}} 
+    {{!--search results --}}
   </div>
 
-  {{!-- Modal  --}}
-  <div id="modal"></div>
+  {{!-- Modal --}}
+  {{!-- <div id="modal"></div> --}}
   <div id="modal-act" class="modal">
-  <div class="modal "></div>
-  <div class="modal-content ">
-   <div id="box-index"  class="box">
-     <article class="media ">
-       <div class="media-content">
-         <div id="modal-result" class="content modal-alert">
-         </div>
-       </div>
-     </article>
-   </div> 
+    {{!-- <div class="modal "></div> --}}
+    <div  class="modal-content bg-r">
+      {{!-- <div id="box-index" class="box"> --}}
+        {{!-- <article class="media "> --}}
+          {{!-- <div class="media-content"> --}}
+            <p id="modal-result" class="content">
+            </p>
+          {{!-- </div>
+        </article>
+      </div> --}}
+    </div>
   </div>
-</div>
 
-<script src="/js/index.js"></script>
+  <script src="/js/index.js"></script>
 
-<body>
+  <body>
