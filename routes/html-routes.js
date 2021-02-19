@@ -5,7 +5,7 @@ const isAuthenticated = require("../config/middleware/isAuthenticated")
 
 module.exports = function (app, express) {
     app.get("/", (req, res) => {
-        console.log(req.user)
+       
         res.render("index", req.user)
     })
 

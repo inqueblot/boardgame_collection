@@ -57,7 +57,7 @@ $(document).ready(function () {
       };
       // PUSH GAMEOBJECT TO EMPTY ARRAY AFTER EACH SEARCH \\
       // searchArr.push(gameObject);
-      // console.log(searchArr);
+      
     }
   };
 

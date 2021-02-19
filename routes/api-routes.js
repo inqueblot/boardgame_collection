@@ -58,7 +58,7 @@ module.exports = function (app) {
 
     app.post("/api/signup/", function (req, res) {
         let values = req.body;
-        console.log(req.body);
+        
         User.create({
             email: values.email,
             password: values.password
@@ -68,7 +68,7 @@ module.exports = function (app) {
     });
 
     app.post("/api/login", passport.authenticate("local"), (req, res) => {
-        // Sending back a password, even a hashed password, isn't a good idea
+       
         res.json({
             email: req.user.email,
             id: req.user.id
@@ -76,7 +76,7 @@ module.exports = function (app) {
     });
 
     app.get("/api/collection/players/:number", function (req, res) {
-        console.log(req.params.number)
+        
         Collection.findAll({
             where: {
                 minPlayers: {
@@ -87,13 +87,13 @@ module.exports = function (app) {
                 }
             }
         }).then(function (results) {
-            // console.log(results)
+          
             res.json(results)
         })
     });
 
     app.get("/api/collection/time/:number", function (req, res) {
-        console.log(req.params.number)
+        
         Collection.findAll({
             where: {
                 playTime: {
@@ -120,22 +120,5 @@ module.exports = function (app) {
 
 };
 
-
-//     // Write code here to create a new todo and save it to the database
-//     // and then res.json back the new todo to the user
-//     db.Todo.create(
-//         req.body
-
-//     ).then(function (results) {
-//         // `results` here would be the newly created chirp
-// res.end();
-//     });
-
-// .then(function () {
-//   console.log("new game added");
-// });
-// .catch(function (err) {
-//   console.log(err);
-// });
 
 
